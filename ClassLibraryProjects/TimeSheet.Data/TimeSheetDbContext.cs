@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TimeSheet.Data
 {
-    public class TimeSheetDbContext : DbContext
+    public class TimeSheetDbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-        }
+        // public void AppDbContext(DbContextOptions<AppDbContext> options) //: base(options)
+        // {
+        // }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
             
-        }
+        // }
     }
 }

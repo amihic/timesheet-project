@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TimeSheet.Data
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository
     {
         
     }

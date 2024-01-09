@@ -3,20 +3,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{4094F174-67F2-43D0-98C2-D84F86987CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{4094F174-67F2-43D0-98C2-D84F86987CD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheet.Data", "ClassLibraryProjects\TimeSheet.Data\TimeSheet.Data.csproj", "{41B75F6E-631B-4C85-8177-E5B854C09459}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheet.Domain", "ClassLibraryProjects\TimeSheet.Domain\TimeSheet.Domain.csproj", "{77A24B41-79DC-4A36-AF35-960D3EF60C13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheet.Service", "ClassLibraryProjects\TimeSheet.Service\TimeSheet.Service.csproj", "{9BED4791-DD18-4E72-8824-5D6BC6EA4041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4094F174-67F2-43D0-98C2-D84F86987CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4094F174-67F2-43D0-98C2-D84F86987CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4094F174-67F2-43D0-98C2-D84F86987CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4094F174-67F2-43D0-98C2-D84F86987CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B75F6E-631B-4C85-8177-E5B854C09459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B75F6E-631B-4C85-8177-E5B854C09459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B75F6E-631B-4C85-8177-E5B854C09459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B75F6E-631B-4C85-8177-E5B854C09459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A24B41-79DC-4A36-AF35-960D3EF60C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A24B41-79DC-4A36-AF35-960D3EF60C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A24B41-79DC-4A36-AF35-960D3EF60C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A24B41-79DC-4A36-AF35-960D3EF60C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BED4791-DD18-4E72-8824-5D6BC6EA4041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BED4791-DD18-4E72-8824-5D6BC6EA4041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BED4791-DD18-4E72-8824-5D6BC6EA4041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BED4791-DD18-4E72-8824-5D6BC6EA4041}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F21C11ED-16DF-4978-B61C-893971861AD8}
 	EndGlobalSection
 EndGlobal

@@ -9,3 +9,4 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\ob
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\refint\TimeSheet.Domain.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.pdb
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\ref\TimeSheet.Domain.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.sourcelink.json

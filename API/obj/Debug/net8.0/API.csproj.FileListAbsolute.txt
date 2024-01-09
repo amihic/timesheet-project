@@ -34,3 +34,4 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Domain.dl
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Service.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Service.pdb
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Domain.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\obj\Debug\net8.0\API.sourcelink.json

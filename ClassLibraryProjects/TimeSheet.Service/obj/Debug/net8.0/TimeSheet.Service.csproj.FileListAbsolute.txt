@@ -13,3 +13,4 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\o
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\refint\TimeSheet.Service.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.pdb
 C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\ref\TimeSheet.Service.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.sourcelink.json
