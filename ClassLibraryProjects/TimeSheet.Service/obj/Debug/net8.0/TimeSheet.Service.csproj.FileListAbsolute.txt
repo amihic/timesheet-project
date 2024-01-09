@@ -1,0 +1,15 @@
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.AssemblyInfoInputs.cache
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.AssemblyInfo.cs
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.csproj.CoreCompileInputs.cache
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.csproj.AssemblyReference.cache
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\bin\Debug\net8.0\TimeSheet.Service.deps.json
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\bin\Debug\net8.0\TimeSheet.Service.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\bin\Debug\net8.0\TimeSheet.Service.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\bin\Debug\net8.0\TimeSheet.Domain.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\bin\Debug\net8.0\TimeSheet.Domain.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.csproj.CopyComplete
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\refint\TimeSheet.Service.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\TimeSheet.Service.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Service\obj\Debug\net8.0\ref\TimeSheet.Service.dll

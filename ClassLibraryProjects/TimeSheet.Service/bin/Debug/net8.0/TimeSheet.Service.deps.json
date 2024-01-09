@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TimeSheet.Service/1.0.0": {
+        "dependencies": {
+          "TimeSheet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "TimeSheet.Service.dll": {}
+        }
+      },
+      "TimeSheet.Domain/1.0.0": {
+        "runtime": {
+          "TimeSheet.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TimeSheet.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TimeSheet.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

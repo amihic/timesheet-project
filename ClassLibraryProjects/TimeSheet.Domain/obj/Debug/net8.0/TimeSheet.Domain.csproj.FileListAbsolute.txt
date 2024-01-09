@@ -1,0 +1,11 @@
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\bin\Debug\net8.0\TimeSheet.Domain.deps.json
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\bin\Debug\net8.0\TimeSheet.Domain.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\bin\Debug\net8.0\TimeSheet.Domain.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.AssemblyInfoInputs.cache
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.AssemblyInfo.cs
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\refint\TimeSheet.Domain.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\TimeSheet.Domain.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\obj\Debug\net8.0\ref\TimeSheet.Domain.dll
