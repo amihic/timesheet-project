@@ -10,7 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
-    <ProjectReference Include="C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\TimeSheet.Domain.csproj"/>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <ProjectReference Include="C:\Users\aleksa.mihic\Desktop\TimeSheet\ClassLibraryProjects\TimeSheet.Domain\TimeSheet.Domain.csproj" />
   </ItemGroup>
 
 </Project>

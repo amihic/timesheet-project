@@ -4,17 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace TimeSheet.Data
 {
-    public class TimeSheetDbContext
+    public class TimeSheetDbContext : DbContext
     {
-        // public void AppDbContext(DbContextOptions<AppDbContext> options) //: base(options)
-        // {
-        // }
+        public TimeSheetDbContext(DbContextOptions<TimeSheetDbContext> options) : base(options)
+        {
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-            
-        // }
+        }
+
+        public DbSet<CategoryEntity> Categories {get; set; }
+
     }
 }

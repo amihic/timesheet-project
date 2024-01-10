@@ -1,7 +1,16 @@
 using TimeSheet.Domain;
 using TimeSheet.Service;
+using TimeSheet.Data;
+using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Dodajte DbContext direktno u DI kontejner
+builder.Services.AddDbContext<TimeSheetDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Add services to the container.
 
