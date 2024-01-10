@@ -1,4 +1,5 @@
 ﻿using TimeSheet.Domain;
+using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Service;
 
@@ -12,9 +13,8 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<IReadOnlyList<CategoryEntity>> GetCategoriesAsync()
+    public Task<IEnumerable<Category>> GetCategoriesAsync()
     {
-        return (IReadOnlyList<CategoryEntity>) await _categoryRepository.GetCategoriesAsync();
-
+        return _categoryRepository.GetCategoriesAsync();
     }
 }

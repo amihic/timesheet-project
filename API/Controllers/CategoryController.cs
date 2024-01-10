@@ -6,24 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TimeSheet.Domain;
+using TimeSheet.Data.Entities;
+using API.DTO;
+using TimeSheet.Domain.Model;
+using AutoMapper;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/category")]
     public class CategoryController
     {
 
          private readonly ICategoryService _categoryService;
 
-         public CategoryController(ICategoryService categoryService)
+        private readonly IMapper _mapper;
+
+         public CategoryController(IMapper mapper, ICategoryService categoryService)
          {
+            _mapper = mapper;
              _categoryService = categoryService;
          }
 
         [HttpGet]
-        public async Task<IReadOnlyList<CategoryEntity>> GetCategoriesAsync()
+        public async Task<IEnumerable<CategoryDTO>> GetCategoriesAsync()
         {
-            return await _categoryService.GetCategoriesAsync();
+            var categories = await _categoryService.GetCategoriesAsync();
+            return _mapper.Map<IEnumerable<CategoryDTO>>(categories);
         }
     }
 }

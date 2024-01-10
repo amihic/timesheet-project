@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TimeSheet.Data.Entities;
 using TimeSheet.Domain;
-
+using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Data
 {
@@ -15,7 +16,7 @@ namespace TimeSheet.Data
 
         }
 
-        public DbSet<CategoryEntity> Categories {get; set; }
+        public DbSet<Category> Categories {get; set; }
 
     }
 }

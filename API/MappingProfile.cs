@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using API.DTO;
+using AutoMapper;
+using TimeSheet.Data.Entities;
+using TimeSheet.Domain.Model;
 
 namespace API
 
@@ -7,6 +10,8 @@ namespace API
     {
         public MappingProfile()
         {
+            CreateMap<CategoryEntity, Category>();
+            CreateMap<Category, CategoryDTO>();
 
         }
     }
