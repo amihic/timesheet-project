@@ -7,6 +7,6 @@ namespace TimeSheet.Domain
 {
     public interface ICategoryRepository
     {
-        
+        Task<IReadOnlyList<CategoryEntity>> GetCategoriesAsync();        
     }
 }

@@ -21,9 +21,9 @@ namespace API.Controllers
          }
 
         [HttpGet]
-        public string GetCategory()
+        public async Task<IReadOnlyList<CategoryEntity>> GetCategoriesAsync()
         {
-            return  _categoryService.GetCategory();
+            return await _categoryService.GetCategoriesAsync();
         }
     }
 }

@@ -1,11 +1,14 @@
+using AutoMapper;
 using TimeSheet.Domain;
 using TimeSheet.Service;
 using TimeSheet.Data;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
-
+using API;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Dodajte AutoMapper konfiguraciju u DI kontejner
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Dodajte DbContext direktno u DI kontejner
 builder.Services.AddDbContext<TimeSheetDbContext>(options =>
@@ -18,6 +21,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // Registracija servisa u DI kontejneru
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 

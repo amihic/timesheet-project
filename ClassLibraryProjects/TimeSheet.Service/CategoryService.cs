@@ -4,8 +4,17 @@ namespace TimeSheet.Service;
 
 public class CategoryService : ICategoryService
 {
-    public string GetCategory()
+    private readonly ICategoryRepository _categoryRepository;
+
+
+    public CategoryService(ICategoryRepository categoryRepository)
     {
-        return "kategorija";
+        _categoryRepository = categoryRepository;
+    }
+
+    public async Task<IReadOnlyList<CategoryEntity>> GetCategoriesAsync()
+    {
+        return (IReadOnlyList<CategoryEntity>) await _categoryRepository.GetCategoriesAsync();
+
     }
 }

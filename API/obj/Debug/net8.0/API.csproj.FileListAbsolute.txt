@@ -143,3 +143,5 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\runtimes\win\lib\ne
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Data.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\TimeSheet.Data.pdb
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
