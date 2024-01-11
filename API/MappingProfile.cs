@@ -1,5 +1,6 @@
 ﻿using API.DTO;
 using AutoMapper;
+using System.Collections.Generic;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain.Model;
 
@@ -10,9 +11,10 @@ namespace API
     {
         public MappingProfile()
         {
-            CreateMap<CategoryEntity, Category>();
+            CreateMap<CategoryEntity, CategoryDTO>();
             CreateMap<Category, CategoryDTO>();
-            CreateMap<CategoryDTO, Category>();
+            CreateMap<CategoryEntity, Category>();
+            
 
         }
     }

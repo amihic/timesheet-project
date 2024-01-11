@@ -10,5 +10,6 @@ namespace TimeSheet.Domain.Interfaces
     {
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
+        void DeleteCategoryAsync(int id);
     }
 }

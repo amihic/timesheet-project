@@ -9,5 +9,6 @@ namespace TimeSheet.Domain.Interfaces
     public interface ICategoryService
     {
         Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<Category> GetCategoryByIdAsync(int id);
     }
 }

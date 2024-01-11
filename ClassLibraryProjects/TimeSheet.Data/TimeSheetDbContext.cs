@@ -16,7 +16,7 @@ namespace TimeSheet.Data
 
         }
 
-        public DbSet<Category> Categories {get; set; }
+        public DbSet<CategoryEntity> Categories {get; set; }
 
     }
 }

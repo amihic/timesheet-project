@@ -17,4 +17,9 @@ public class CategoryService : ICategoryService
     {
         return _categoryRepository.GetCategoriesAsync();
     }
+
+    public Task<Category> GetCategoryByIdAsync(int id)
+    {
+        return _categoryRepository.GetCategoryByIdAsync(id);
+    }
 }
