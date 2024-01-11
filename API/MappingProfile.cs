@@ -12,6 +12,7 @@ namespace API
         {
             CreateMap<CategoryEntity, Category>();
             CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryDTO, Category>();
 
         }
     }

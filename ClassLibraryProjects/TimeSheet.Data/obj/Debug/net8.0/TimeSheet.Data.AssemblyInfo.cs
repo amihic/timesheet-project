@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TimeSheet.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6c0efa440fcea34d1d056387d53c91286044602")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7109520c4600c86437d38878ed07297e437c9f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TimeSheet.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TimeSheet.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

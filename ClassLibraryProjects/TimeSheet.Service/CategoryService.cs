@@ -1,4 +1,4 @@
-﻿using TimeSheet.Domain;
+﻿using TimeSheet.Domain.Interfaces;
 using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Service;

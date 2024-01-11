@@ -1,9 +1,9 @@
 using AutoMapper;
-using TimeSheet.Domain;
 using TimeSheet.Service;
 using TimeSheet.Data;
 using Microsoft.EntityFrameworkCore;
 using API;
+using TimeSheet.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

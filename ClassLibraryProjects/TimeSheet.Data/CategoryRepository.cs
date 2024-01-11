@@ -6,7 +6,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TimeSheet.Data.Entities;
-using TimeSheet.Domain;
+using TimeSheet.Domain.Interfaces;
 using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Data
@@ -15,11 +15,11 @@ namespace TimeSheet.Data
     {
         private readonly TimeSheetDbContext _timeSheetDbContext;
 
-        private readonly IMapper _mapper;  
+        //private readonly IMapper _mapper;  
 
-        public CategoryRepository(IMapper mapper, TimeSheetDbContext timeSheetDbContext)
+        public CategoryRepository(TimeSheetDbContext timeSheetDbContext)
         {
-            _mapper = mapper;
+            //_mapper = mapper;
             _timeSheetDbContext = timeSheetDbContext;
         }
 
@@ -27,7 +27,10 @@ namespace TimeSheet.Data
         {
             return await _timeSheetDbContext.Categories.ToListAsync();
         }
-        
-        
+
+        public async Task<Category> GetCategoryByIdAsync(int id)
+        {
+            return await _timeSheetDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

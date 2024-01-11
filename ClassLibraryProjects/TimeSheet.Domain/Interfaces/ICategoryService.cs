@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TimeSheet.Domain.Model;
 
-namespace TimeSheet.Domain
+namespace TimeSheet.Domain.Interfaces
 {
-    public interface ICategoryService {
+    public interface ICategoryService
+    {
         Task<IEnumerable<Category>> GetCategoriesAsync();
     }
 }
