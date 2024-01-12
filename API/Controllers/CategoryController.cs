@@ -24,6 +24,20 @@ namespace API.Controllers
             _categoryRepository = categoryRepository;
         }
 
+        [HttpPost]
+        public void CreateCategory(CategoryDTO categoryDto)
+        {
+            var newCategory = _mapper.Map<CategoryDTO, Category>(categoryDto);
+            _categoryService.CreateCategory(newCategory);
+        }
+
+        [HttpPut]
+        public void UpdateCategory([FromBody] CategoryDTO categoryDto)
+        {
+            var categoryFromFront = _mapper.Map<CategoryDTO, Category>(categoryDto);
+            _categoryService.UpdateCategory(categoryFromFront);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<CategoryDTO>> GetCategoriesAsync()
         {
@@ -33,8 +47,8 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CategoryDTO>> GetCategoryByIdAsync(int id)
+        //[ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CategoryDTO>> GetCategoryByIdAsync([FromRoute] int id)
         {
             var category = await _categoryService.GetCategoryByIdAsync(id);
 

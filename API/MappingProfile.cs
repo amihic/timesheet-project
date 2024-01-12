@@ -12,9 +12,12 @@ namespace API
         public MappingProfile()
         {
             CreateMap<CategoryEntity, CategoryDTO>();
-            CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryEntity, Category>();
-            
+            CreateMap<Task<Category>, Category>();
+            CreateMap<CategoryDTO, Category>();
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<Category, CategoryEntity>();
+
 
         }
     }

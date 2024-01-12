@@ -13,6 +13,16 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
+    public void CreateCategory(Category newCategory)
+    {
+        _categoryRepository.Create(newCategory);
+    }
+
+    public void UpdateCategory(Category categoryFromFront)
+    {
+        _categoryRepository.Update(categoryFromFront);
+    }
+
     public Task<IEnumerable<Category>> GetCategoriesAsync()
     {
         return _categoryRepository.GetCategoriesAsync();
@@ -22,4 +32,6 @@ public class CategoryService : ICategoryService
     {
         return _categoryRepository.GetCategoryByIdAsync(id);
     }
+
+   
 }

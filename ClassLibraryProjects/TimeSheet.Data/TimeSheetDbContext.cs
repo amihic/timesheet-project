@@ -18,5 +18,14 @@ namespace TimeSheet.Data
 
         public DbSet<CategoryEntity> Categories {get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CategoryEntity>()
+                .Property(e => e.Id)
+                .UseIdentityAlwaysColumn();
+
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
