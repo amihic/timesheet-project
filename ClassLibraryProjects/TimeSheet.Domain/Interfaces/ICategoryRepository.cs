@@ -12,6 +12,7 @@ namespace TimeSheet.Domain.Interfaces
         Task<Category> GetCategoryByIdAsync(int id);
         void DeleteCategoryAsync(int id);
         void Create(Category category);
+        int MaxId();
         void Update(Category category);
         void SaveChanges();
     }

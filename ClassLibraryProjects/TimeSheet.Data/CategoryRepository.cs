@@ -57,6 +57,12 @@ namespace TimeSheet.Data
             
         }
 
+        public int MaxId() 
+        {
+            var maxId = _timeSheetDbContext.Categories.Max(c => (int?)c.Id) ?? 0;
+            return maxId;
+        }
+
         public void SaveChanges()
         {
             _timeSheetDbContext.SaveChanges();

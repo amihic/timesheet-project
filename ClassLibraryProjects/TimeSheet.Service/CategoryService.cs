@@ -13,8 +13,14 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
-    public void CreateCategory(Category newCategory)
+    public int GenerateID(Category category) 
     {
+        return category.Id = _categoryRepository.MaxId() + 1;   
+    }
+
+    public void CreateCategory(Category newCategory)
+    {  
+        newCategory.Id = GenerateID(newCategory);
         _categoryRepository.Create(newCategory);
     }
 

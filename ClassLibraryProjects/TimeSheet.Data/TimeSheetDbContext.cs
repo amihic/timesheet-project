@@ -22,7 +22,8 @@ namespace TimeSheet.Data
         {
             modelBuilder.Entity<CategoryEntity>()
                 .Property(e => e.Id)
-                .UseIdentityAlwaysColumn();
+                .UseIdentityByDefaultColumn()
+                .ValueGeneratedOnAdd();
 
 
             base.OnModelCreating(modelBuilder);
