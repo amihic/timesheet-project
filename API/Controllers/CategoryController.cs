@@ -13,15 +13,13 @@ namespace API.Controllers
     public class CategoryController
     {
         private readonly ICategoryService _categoryService;
-        private readonly ICategoryRepository _categoryRepository;
 
         private readonly IMapper _mapper;
 
-        public CategoryController(IMapper mapper, ICategoryService categoryService, ICategoryRepository categoryRepository)
+        public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
             _mapper = mapper;
             _categoryService = categoryService;
-            _categoryRepository = categoryRepository;
         }
 
         [HttpPost]
