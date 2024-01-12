@@ -36,11 +36,10 @@ namespace API.Controllers
             _categoryService.UpdateCategory(categoryFromFront);
         }
 
-        [HttpDelete]
-        public void DeleteCategory([FromBody] CategoryEntity categoryDto)
+        [HttpDelete("{id}")]
+        public void DeleteCategory([FromRoute] int id)
         {
-            var categoryFromFront = _mapper.Map<CategoryEntity, Category>(categoryDto);
-            _categoryService.DeleteCategory(categoryFromFront);
+            _categoryService.DeleteCategory(id);
         }
 
         [HttpGet]

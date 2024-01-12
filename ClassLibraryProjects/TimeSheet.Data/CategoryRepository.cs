@@ -23,9 +23,9 @@ namespace TimeSheet.Data
             _timeSheetDbContext = timeSheetDbContext;
         }
 
-        public void DeleteCategory(Category category)//logicko brisanje
+        public void DeleteCategory(int id)//logicko brisanje
         {
-            var categoryToDelete = _timeSheetDbContext.Categories.Find(category.Id);
+            var categoryToDelete = _timeSheetDbContext.Categories.Find(id);
             categoryToDelete.IsDeleted = true;
             _timeSheetDbContext.Categories.Update(categoryToDelete);
             SaveChanges();

@@ -9,9 +9,9 @@ namespace TimeSheet.Domain.Interfaces
     public interface ICategoryService
     {
         void CreateCategory(Category newCategory);
-        void UpdateCategory(Category categoryFromFront);
+        void UpdateCategory(Category category);
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
-        void DeleteCategory(Category categoryFromFront);
+        void DeleteCategory(int id);
     }
 }
