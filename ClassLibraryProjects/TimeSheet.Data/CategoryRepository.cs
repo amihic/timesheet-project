@@ -37,7 +37,7 @@ namespace TimeSheet.Data
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync() 
         {
-            var categories = await _timeSheetDbContext.Categories.ToListAsync();
+            var categories = await _timeSheetDbContext.Categories.Where(c => !c.IsDeleted).ToListAsync();
             var categoriesToReturn = _mapper.Map<List<CategoryEntity>, IEnumerable<Category>>(categories);
             return categoriesToReturn;
         }

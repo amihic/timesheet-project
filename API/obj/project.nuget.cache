@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WEVBZcJulkgtDsWj4+vJzJL4CRzTr8hjeWgkBYBMhQA3976i3+qpuvEte/pCuiwVl3ZIwDEYSNbYCUp+yd3V6A==",
+  "dgSpecHash": "Hci6oQvOiBs4fl8I8F2miZROyjuF/UuegxJC50NYq6GXPDk/aYtkHDzEeZHIxuA0JQR3r7bfJC+v7uq17tPAMg==",
   "success": true,
   "projectFilePath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.1\\microsoft.entityframeworkcore.design.8.0.1.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.1\\microsoft.entityframeworkcore.relational.8.0.1.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\8.0.1\\microsoft.entityframeworkcore.sqlserver.8.0.1.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.1\\microsoft.entityframeworkcore.tools.8.0.1.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",

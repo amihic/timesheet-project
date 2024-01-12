@@ -28,5 +28,14 @@ namespace TimeSheet.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Konfiguracija, npr.:
+                optionsBuilder.UseSqlServer("DefaultConnection");
+            }
+        }
     }
 }
