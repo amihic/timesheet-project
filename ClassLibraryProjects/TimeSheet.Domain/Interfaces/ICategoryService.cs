@@ -12,5 +12,6 @@ namespace TimeSheet.Domain.Interfaces
         void UpdateCategory(Category categoryFromFront);
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
+        void DeleteCategory(Category categoryFromFront);
     }
 }

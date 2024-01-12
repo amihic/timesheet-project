@@ -38,6 +38,13 @@ namespace API.Controllers
             _categoryService.UpdateCategory(categoryFromFront);
         }
 
+        [HttpDelete]
+        public void DeleteCategory([FromBody] CategoryEntity categoryDto)
+        {
+            var categoryFromFront = _mapper.Map<CategoryEntity, Category>(categoryDto);
+            _categoryService.DeleteCategory(categoryFromFront);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<CategoryDTO>> GetCategoriesAsync()
         {

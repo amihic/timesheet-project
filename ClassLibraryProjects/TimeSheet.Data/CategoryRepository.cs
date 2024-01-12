@@ -23,16 +23,12 @@ namespace TimeSheet.Data
             _timeSheetDbContext = timeSheetDbContext;
         }
 
-        
-
-        public void DeleteCategoryAsync(int id)//logicko brisanje
+        public void DeleteCategory(Category category)//logicko brisanje
         {
-            var categoryToDelete = _timeSheetDbContext.Categories.Find(id);
-            if (categoryToDelete != null)
-            {
-                _timeSheetDbContext.Categories.Remove(categoryToDelete);
-                _timeSheetDbContext.SaveChanges();
-            }
+            var categoryToDelete = _timeSheetDbContext.Categories.Find(category.Id);
+            categoryToDelete.IsDeleted = true;
+            _timeSheetDbContext.Categories.Update(categoryToDelete);
+            SaveChanges();
         }
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync() 
@@ -68,7 +64,7 @@ namespace TimeSheet.Data
             _timeSheetDbContext.SaveChanges();
         }
 
-        public void Update(Category category)
+        public void UpdateCategory(Category category)
         {
             var categoryToUpdate = _timeSheetDbContext.Categories.Find(category.Id);
             var categoryChanges = _mapper.Map<Category, CategoryEntity>(category);

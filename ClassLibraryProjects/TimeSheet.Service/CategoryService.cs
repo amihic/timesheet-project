@@ -26,7 +26,7 @@ public class CategoryService : ICategoryService
 
     public void UpdateCategory(Category categoryFromFront)
     {
-        _categoryRepository.Update(categoryFromFront);
+        _categoryRepository.UpdateCategory(categoryFromFront);
     }
 
     public Task<IEnumerable<Category>> GetCategoriesAsync()
@@ -39,5 +39,8 @@ public class CategoryService : ICategoryService
         return _categoryRepository.GetCategoryByIdAsync(id);
     }
 
-   
+    public void DeleteCategory(Category categoryFromFront)
+    {
+        _categoryRepository.DeleteCategory(categoryFromFront);
+    }
 }
