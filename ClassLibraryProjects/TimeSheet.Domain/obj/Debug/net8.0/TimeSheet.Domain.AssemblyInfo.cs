@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TimeSheet.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bbac4cb7d031adff5585962963f03c4a7eb9f5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TimeSheet.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TimeSheet.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

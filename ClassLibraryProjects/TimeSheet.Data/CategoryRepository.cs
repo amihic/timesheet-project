@@ -6,8 +6,10 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TimeSheet.Data.Entities;
+using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Interfaces;
 using TimeSheet.Domain.Model;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TimeSheet.Data
 {
@@ -31,18 +33,34 @@ namespace TimeSheet.Data
             SaveChanges();
         }
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync() 
+        public async Task<IEnumerable<Category>> GetCategoriesAsync(SearchParams searchParams) 
         {
-            var categories = await _timeSheetDbContext.Categories.Where(c => !c.IsDeleted).ToListAsync();
-            var categoriesToReturn = _mapper.Map<List<CategoryEntity>, IEnumerable<Category>>(categories);
-            return categoriesToReturn;
-        }
+            var query = _timeSheetDbContext.Categories.AsQueryable();
 
-        public async Task<Category> GetCategoryByIdAsync(int id)
-        {
-            var category =  await _timeSheetDbContext.Categories.FindAsync(id);
-            var categoryToReturn = _mapper.Map<Category>(category);
-            return categoryToReturn;
+            if (searchParams.FirstLetter.HasValue && char.IsLetter((char)searchParams.FirstLetter))
+            {
+                query = query.Where(category => EF.Functions.Like(category.Name, $"{searchParams.FirstLetter}%"));
+            }
+            if (!string.IsNullOrEmpty(searchParams.SearchText))
+            {
+                query = query.Where(category => EF.Functions.Like(category.Name, $"%{searchParams.SearchText}%"));
+            }
+
+            var totalCategories = await query.CountAsync();
+            //searchParams.PageIndex = 1;
+            //searchParams.PageSize = 5;
+
+
+            var paginatedCategories = await query
+                .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)
+                .Take(searchParams.PageSize)
+                .ToListAsync();
+
+            var pagination = new Pagination<CategoryEntity>(searchParams.PageIndex, searchParams.PageSize, totalCategories, paginatedCategories);
+
+            var categoriesToReturn = _mapper.Map<IEnumerable<CategoryEntity>, IEnumerable<Category>>(pagination.Data);
+
+            return categoriesToReturn;
         }
 
         public void Create(Category category)
@@ -51,12 +69,6 @@ namespace TimeSheet.Data
             _timeSheetDbContext.Categories.Add(categoryToAdd);
             SaveChanges();
             
-        }
-
-        public int MaxId() 
-        {
-            var maxId = _timeSheetDbContext.Categories.Max(c => (int?)c.Id) ?? 0;
-            return maxId;
         }
 
         public void SaveChanges()

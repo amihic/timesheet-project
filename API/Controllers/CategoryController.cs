@@ -6,11 +6,12 @@ using API.Errors;
 using Microsoft.AspNetCore.Http.HttpResults;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain.Model;
+using TimeSheet.Domain.Helpers;
 
 namespace API.Controllers
 {
     [Route("api/category")]
-    public class CategoryController
+    public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
 
@@ -23,48 +24,44 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public void CreateCategory(CategoryDTO categoryDto)
+        public IActionResult CreateCategory([FromBody] CreateCategoryDTO newCategoryDto)
         {
-            var newCategory = _mapper.Map<CategoryDTO, Category>(categoryDto);
+            var newCategory = _mapper.Map<CreateCategoryDTO, Category>(newCategoryDto);
             _categoryService.CreateCategory(newCategory);
+
+            return Ok();
         }
 
         [HttpPut]
-        public void UpdateCategory([FromBody] CategoryDTO categoryDto)
+        public IActionResult UpdateCategory([FromBody] CategoryDTO categoryDto)
         {
             var categoryFromFront = _mapper.Map<CategoryDTO, Category>(categoryDto);
             _categoryService.UpdateCategory(categoryFromFront);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void DeleteCategory([FromRoute] int id)
+        public IActionResult DeleteCategory([FromRoute] int id)
         {
             _categoryService.DeleteCategory(id);
+
+            return Ok();
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<CategoryDTO>> GetCategoriesAsync()
+        [HttpGet("/all")]
+        public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParams searchParams)
         {
-            var categories = await _categoryService.GetCategoriesAsync();
-            var categoriesToReturn = _mapper.Map<IEnumerable<Category> ,IEnumerable<CategoryDTO>>(categories);
-            return categoriesToReturn;
+
+            var categories = await _categoryService.GetCategoriesAsync(searchParams);
+
+            if (categories == null) return NotFound();
+
+            var categoriesToReturn = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
+
+            return Ok(categoriesToReturn);
         }
 
-        [HttpGet("{id}")]
-        //[ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CategoryDTO>> GetCategoryByIdAsync([FromRoute] int id)
-        {
-            var category = await _categoryService.GetCategoryByIdAsync(id);
 
-            /*if (category == null) 
-            {
-                return NotFound(new ApiResponse(404));
-            }*/
-            var categoryToReturn = _mapper.Map<CategoryDTO>(category);
-            
-            return categoryToReturn;
-        }
-
-        
     }
 }

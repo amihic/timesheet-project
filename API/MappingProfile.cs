@@ -2,6 +2,7 @@
 using AutoMapper;
 using System.Collections.Generic;
 using TimeSheet.Data.Entities;
+using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Model;
 
 namespace API
@@ -11,6 +12,9 @@ namespace API
     {
         public MappingProfile()
         {
+            CreateMap<Pagination<CategoryEntity>, IEnumerable<Category>>();
+                //.ForMember(dest => dest, opt => opt.MapFrom(src => src.Data));
+            CreateMap<CreateCategoryDTO, Category>();
             CreateMap<CategoryEntity, CategoryDTO>();
             CreateMap<CategoryEntity, Category>();
             CreateMap<Task<Category>, Category>();

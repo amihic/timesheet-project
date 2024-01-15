@@ -1,4 +1,5 @@
-﻿using TimeSheet.Domain.Interfaces;
+﻿using TimeSheet.Domain.Helpers;
+using TimeSheet.Domain.Interfaces;
 using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Service;
@@ -13,14 +14,8 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
-    public int GenerateID(Category category) 
-    {
-        return category.Id = _categoryRepository.MaxId() + 1;   
-    }
-
     public void CreateCategory(Category newCategory)
     {  
-        newCategory.Id = GenerateID(newCategory);
         _categoryRepository.Create(newCategory);
     }
 
@@ -29,14 +24,9 @@ public class CategoryService : ICategoryService
         _categoryRepository.UpdateCategory(category);
     }
 
-    public Task<IEnumerable<Category>> GetCategoriesAsync()
+    public Task<IEnumerable<Category>> GetCategoriesAsync(SearchParams searchParams)
     {
-        return _categoryRepository.GetCategoriesAsync();
-    }
-
-    public Task<Category> GetCategoryByIdAsync(int id)
-    {
-        return _categoryRepository.GetCategoryByIdAsync(id);
+        return _categoryRepository.GetCategoriesAsync(searchParams);
     }
 
     public void DeleteCategory(int id)

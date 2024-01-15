@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TimeSheet.Data.Entities;
@@ -21,6 +22,7 @@ namespace TimeSheet.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CategoryEntity>()
+                .HasQueryFilter(GetGeneralCategoryFilter())
                 .Property(e => e.Id)
                 .UseIdentityByDefaultColumn()
                 .ValueGeneratedOnAdd();
@@ -33,9 +35,16 @@ namespace TimeSheet.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Konfiguracija, npr.:
                 optionsBuilder.UseSqlServer("DefaultConnection");
             }
         }
+
+        private Expression<Func<CategoryEntity, bool>> GetGeneralCategoryFilter()
+        {
+            return category => !category.IsDeleted;
+        }
+
+
+
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Domain.Interfaces
@@ -10,8 +11,7 @@ namespace TimeSheet.Domain.Interfaces
     {
         void CreateCategory(Category newCategory);
         void UpdateCategory(Category category);
-        Task<IEnumerable<Category>> GetCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
+        Task<IEnumerable<Category>> GetCategoriesAsync(SearchParams searchParams);
         void DeleteCategory(int id);
     }
 }
