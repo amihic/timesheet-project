@@ -1,4 +1,7 @@
 ﻿using API.Errors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Net;
 using System.Text.Json;
 
@@ -6,13 +9,10 @@ namespace API.Middleware
 {
     public class ExceptionMiddleware
     {
-        private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IHostEnvironment _env;
         private readonly RequestDelegate _next;
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
+
+        public ExceptionMiddleware(RequestDelegate next)
         {
-            _env = env;
-            _logger = logger;
             _next = next;
         }
 
@@ -24,23 +24,63 @@ namespace API.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, ex.Message);
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-                /*var response = _env.IsDevelopment()
-                    ? new ApiException((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString())
-                    : new ApiException((int)HttpStatusCode.InternalServerError);*/
-                var response = _env.IsDevelopment()
-                    ? new ApiException((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace?.Split('\n').FirstOrDefault())
-                    : new ApiException((int)HttpStatusCode.InternalServerError);
-
-                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-                var json = JsonSerializer.Serialize(response, options);
-
-                await context.Response.WriteAsync(json);
+                await HandleExceptionAsync(context, ex);
             }
+        }
+
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = GetStatusCode(exception);
+
+            var response = new
+            {
+                StatusCode = context.Response.StatusCode,
+                Message = exception.Message
+            };
+
+            var json = JsonConvert.SerializeObject(response);
+            return context.Response.WriteAsync(json);
+        }
+
+        private int GetStatusCode(Exception exception)
+        {
+            switch (exception)
+            {
+                case UnauthorizedAccessException _:
+                    return (int)HttpStatusCode.Unauthorized;
+                case NotFoundException _:
+                    return (int)HttpStatusCode.NotFound;
+                case BadRequestException _:
+                    return (int)HttpStatusCode.BadRequest;
+                case NullReferenceException _://pitaj
+                    return (int)HttpStatusCode.BadRequest;
+                default:
+                    return (int)HttpStatusCode.InternalServerError;
+            }
+        }
+    }
+
+    public class NotFoundException : Exception
+    {
+        public NotFoundException(string message) : base(message)
+        {
+        }
+    }
+
+    public class BadRequestException : Exception
+    {
+        public BadRequestException(string message) : base(message)
+        {
+        }
+    }
+    public class HttpResponseException : Exception
+    {
+        public int StatusCode { get; set; }
+
+        public HttpResponseException(int statusCode, string message) : base(message)
+        {
+            StatusCode = statusCode;
         }
     }
 }

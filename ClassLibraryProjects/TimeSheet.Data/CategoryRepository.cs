@@ -47,9 +47,6 @@ namespace TimeSheet.Data
             }
 
             var totalCategories = await query.CountAsync();
-            //searchParams.PageIndex = 1;
-            //searchParams.PageSize = 5;
-
 
             var paginatedCategories = await query
                 .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)

@@ -35,8 +35,8 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult UpdateCategory([FromBody] CategoryDTO categoryDto)
         {
-            var categoryFromFront = _mapper.Map<CategoryDTO, Category>(categoryDto);
-            _categoryService.UpdateCategory(categoryFromFront);
+            var categoryToUpdate = _mapper.Map<CategoryDTO, Category>(categoryDto);
+            _categoryService.UpdateCategory(categoryToUpdate);
 
             return Ok();
         }
@@ -49,13 +49,12 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpGet("/all")]
-        public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParams searchParams)
+        [HttpGet("/allCategories")]
+        public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsDTO searchParams)
         {
+            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
 
-            var categories = await _categoryService.GetCategoriesAsync(searchParams);
-
-            if (categories == null) return NotFound();
+            var categories = await _categoryService.GetCategoriesAsync(parameters);
 
             var categoriesToReturn = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
 
