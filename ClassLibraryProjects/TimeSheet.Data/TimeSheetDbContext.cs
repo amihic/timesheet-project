@@ -19,6 +19,7 @@ namespace TimeSheet.Data
 
         public DbSet<CategoryEntity> Categories {get; set; }
         public DbSet<ClientEntity> Clients { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,11 @@ namespace TimeSheet.Data
                 .UseIdentityByDefaultColumn()
                 .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<UserEntity>()
+                .HasQueryFilter(GetGeneralUserFilter())
+                .Property(e => e.Id)
+                .UseIdentityByDefaultColumn()
+                .ValueGeneratedOnAdd();
 
             base.OnModelCreating(modelBuilder);
         }
@@ -54,6 +60,11 @@ namespace TimeSheet.Data
         private Expression<Func<ClientEntity, bool>> GetGeneralClientFilter()
         {
             return client => !client.IsDeleted;
+        }
+
+        private Expression<Func<UserEntity, bool>> GetGeneralUserFilter()
+        {
+            return user => !user.IsDeleted;
         }
 
 

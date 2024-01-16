@@ -53,6 +53,13 @@ namespace API
             CreateMap<CreateClientDTO, Client>();
             CreateMap<Client, ClientDTO>();
             CreateMap<ClientDTO, Client>();
+            ////////////////////////////////////////////////////////////////////////
+            CreateMap<User, UserEntity>();
+            CreateMap<UserEntity, User>();
+            CreateMap<CreateUserDTO, User>();
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>();
+
 
 
 

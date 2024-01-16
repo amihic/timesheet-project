@@ -16,7 +16,7 @@ public class CategoryService : ICategoryService
 
     public void CreateCategory(Category newCategory)
     {  
-        _categoryRepository.Create(newCategory);
+        _categoryRepository.CreateCategory(newCategory);
     }
 
     public void UpdateCategory(Category category)

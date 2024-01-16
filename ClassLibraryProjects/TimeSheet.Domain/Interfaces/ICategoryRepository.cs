@@ -11,7 +11,7 @@ namespace TimeSheet.Domain.Interfaces
     {
         Task<IEnumerable<Category>> GetCategoriesAsync(SearchParams searchParams);
         void DeleteCategory(int id);
-        void Create(Category category);
+        void CreateCategory(Category category);
         void UpdateCategory(Category category);
         void SaveChanges();
     }

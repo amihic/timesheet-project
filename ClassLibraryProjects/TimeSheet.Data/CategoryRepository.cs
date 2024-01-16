@@ -60,7 +60,7 @@ namespace TimeSheet.Data
             return categoriesToReturn;
         }
 
-        public void Create(Category category)
+        public void CreateCategory(Category category)
         {
             var categoryToAdd = _mapper.Map<Category, CategoryEntity>(category);
             _timeSheetDbContext.Categories.Add(categoryToAdd);
