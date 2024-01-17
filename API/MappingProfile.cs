@@ -59,6 +59,34 @@ namespace API
             CreateMap<CreateUserDTO, User>();
             CreateMap<UserDTO, User>();
             CreateMap<User, UserDTO>();
+            ////////////////////////////////////////////////////////////////////////
+            CreateMap<Project, ProjectEntity>();
+            CreateMap<ProjectEntity, Project>();
+            CreateMap<Project, ProjectDTO>();
+            CreateMap<ProjectDTO, Project>()
+                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => new Client
+                {
+                    Name = src.Client
+                }))
+                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => new User
+                {
+                    Name = src.Lead
+                }))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description)); 
+
+            CreateMap<CreateProjectDTO, Project>()
+                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => new Client
+                {
+                    Name = src.Client
+                }))
+                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => new User
+                {
+                    Name = src.Lead
+                }))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description));
+            
 
 
 

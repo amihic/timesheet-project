@@ -90,6 +90,41 @@ namespace TimeSheet.Data.Migrations
                     b.ToTable("CountryEntity");
                 });
 
+            modelBuilder.Entity("TimeSheet.Data.Entities.ProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActived")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("LeadId");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("TimeSheet.Data.Entities.UserEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -131,6 +166,21 @@ namespace TimeSheet.Data.Migrations
                         .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("TimeSheet.Data.Entities.ProjectEntity", b =>
+                {
+                    b.HasOne("TimeSheet.Data.Entities.ClientEntity", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("TimeSheet.Data.Entities.UserEntity", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Lead");
                 });
 #pragma warning restore 612, 618
         }

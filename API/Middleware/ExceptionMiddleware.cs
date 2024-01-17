@@ -49,6 +49,8 @@ namespace API.Middleware
             {
                 case UnauthorizedAccessException _:
                     return (int)HttpStatusCode.Unauthorized;
+                case DirectoryNotFoundException _:
+                    return (int)HttpStatusCode.NotFound;
                 case NotFoundException _:
                     return (int)HttpStatusCode.NotFound;
                 case BadRequestException _:
