@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeSheet.Domain.Model;
-
+// p.id u.id
+//
 namespace TimeSheet.Data.Entities
 {
     public class ProjectEntity
