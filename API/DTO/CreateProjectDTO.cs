@@ -6,7 +6,7 @@ namespace API.DTO
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Client { get; set; }
-        public string Lead { get; set; }
+        public int ClientId { get; set; }
+        public int LeadId { get; set; }
     }
 }

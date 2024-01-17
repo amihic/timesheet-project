@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,17 @@ namespace TimeSheet.Data
         }
         public void CreateProject(Project project)
         {
+            var lead = _timeSheetDbContext.Users.Find(project.Lead.Id);
+            var client = _timeSheetDbContext.Clients.Find(project.Client.Id);
+           
+            if (lead == null || client == null) 
+            {
+                throw new DirectoryNotFoundException(); 
+            }
+
             var projectToAdd = _mapper.Map<Project, ProjectEntity>(project);
+            projectToAdd.Lead = lead;
+            projectToAdd.Client = client;
             _timeSheetDbContext.Projects.Add(projectToAdd);
             SaveChanges();
         }
@@ -48,7 +59,7 @@ namespace TimeSheet.Data
         {
             var query = _timeSheetDbContext.Projects.AsQueryable();
 
-            if (searchParams.FirstLetter.HasValue && char.IsLetter((char)searchParams.FirstLetter))
+            if (searchParams.FirstLetter.HasValue)
             {
                 query = query.Where(project => EF.Functions.Like(project.Name, $"{searchParams.FirstLetter}%"));
             }
@@ -60,6 +71,8 @@ namespace TimeSheet.Data
             var totalProjects = await query.CountAsync();
 
             var paginatedProjects = await query
+                .Include(c => c.Client.Country)
+                .Include(c => c.Lead)
                 .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)
                 .Take(searchParams.PageSize)
                 .ToListAsync();

@@ -18,6 +18,7 @@ namespace TimeSheet.Data
         }
 
         public DbSet<CategoryEntity> Categories {get; set; }
+        public DbSet<CountryEntity> Countries { get; set; }
         public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ProjectEntity> Projects { get; set; }
@@ -26,6 +27,11 @@ namespace TimeSheet.Data
         {
             modelBuilder.Entity<CategoryEntity>()
                 .HasQueryFilter(GetGeneralCategoryFilter())
+                .Property(e => e.Id)
+                .UseIdentityByDefaultColumn()
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<CountryEntity>()
                 .Property(e => e.Id)
                 .UseIdentityByDefaultColumn()
                 .ValueGeneratedOnAdd();

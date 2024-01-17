@@ -25,16 +25,15 @@ namespace TimeSheet.Data
         }
         public void CreateClient(Client client)
         {
-            Country country = new Country();
-            country.Name = client.Name;
-            Client nClient = new Client();
-            nClient.Country = country;
-            nClient.Name = client.Name;
-            nClient.Address = client.Address;
-            nClient.City = client.City;
-            nClient.PostalCode = client.PostalCode;
+            var country = _timeSheetDbContext.Countries.Find(client.Country.Id);
 
-            var clientToAdd = _mapper.Map<Client, ClientEntity>(nClient);
+            if (country == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+            
+            var clientToAdd = _mapper.Map<Client, ClientEntity>(client);
+            clientToAdd.Country = country;
             _timeSheetDbContext.Clients.Add(clientToAdd);
             SaveChanges();
         }
@@ -51,7 +50,7 @@ namespace TimeSheet.Data
         {
             var query = _timeSheetDbContext.Clients.AsQueryable();
 
-            if (searchParams.FirstLetter.HasValue && char.IsLetter((char)searchParams.FirstLetter))
+            if (searchParams.FirstLetter.HasValue)
             {
                 query = query.Where(client => EF.Functions.Like(client.Name, $"{searchParams.FirstLetter}%"));
             }
@@ -63,6 +62,7 @@ namespace TimeSheet.Data
             var totalClients = await query.CountAsync();
 
             var paginatedClients = await query
+                .Include(c => c.Country)
                 .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)
                 .Take(searchParams.PageSize)
                 .ToListAsync();

@@ -1,6 +1,7 @@
 ﻿using API.DTO;
 using AutoMapper;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Model;
@@ -25,68 +26,63 @@ namespace API
 
             CreateMap<string, Country>().ConstructUsing(src => new Country { Name = src });
             ////////////////////////////////////////////////////////////////////////
-            CreateMap<ClientDTO, Client>()
-            .ForMember(dest => dest.Country, opt => opt.MapFrom(src => new Country
-            {
-                Name = src.Country
-            }))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
-            .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-            .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
-            ////////////////////////////////////////////////////////////////////////
-            CreateMap<CreateClientDTO, Client>()
-            .ForMember(dest => dest.Country, opt => opt.MapFrom(src => new Country
-            {
-                Name = src.Country
-            }))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
-            .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-            .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
-            ////////////////////////////////////////////////////////////////////////
-            CreateMap<Client, ClientEntity>()
-            .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country)).ReverseMap();
+            CreateMap<ClientDTO, Client>();
 
+            ////////////////////////////////////////////////////////////////////////
+            
+            //za kreiranje Clienta
+            CreateMap<CreateClientDTO, Client>()
+            .ForPath(dest => dest.Country.Id, opt => opt.MapFrom(src => src.CountryId));
+
+            CreateMap<Client, ClientEntity>()
+            .ForPath(dest => dest.Country, opt => opt.MapFrom(src => src.Country));
+            //za prikaz Clienta
             CreateMap<Country, CountryEntity>().ReverseMap();
 
-            CreateMap<CreateClientDTO, Client>();
-            CreateMap<Client, ClientDTO>();
-            CreateMap<ClientDTO, Client>();
+            CreateMap<ClientEntity, Client>()
+            .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
+            .ForPath(dest => dest.Country.Id, opt => opt.MapFrom(src => src.Country.Id))
+            .ForPath(dest => dest.Country.Name, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap();
+
+            CreateMap<Client, ClientDTO>()
+                .ForPath(dest => dest.Country.Id, opt => opt.MapFrom(src => src.Country.Id))
+                .ForPath(dest => dest.Country.Name, opt => opt.MapFrom(src => src.Country.Name));
+
             ////////////////////////////////////////////////////////////////////////
+            ///
             CreateMap<User, UserEntity>();
             CreateMap<UserEntity, User>();
             CreateMap<CreateUserDTO, User>();
             CreateMap<UserDTO, User>();
             CreateMap<User, UserDTO>();
+
             ////////////////////////////////////////////////////////////////////////
-            CreateMap<Project, ProjectEntity>();
+            ///
             CreateMap<ProjectEntity, Project>();
             CreateMap<Project, ProjectDTO>();
-            CreateMap<ProjectDTO, Project>()
-                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => new Client
-                {
-                    Name = src.Client
-                }))
-                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => new User
-                {
-                    Name = src.Lead
-                }))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description)); 
+            CreateMap<ProjectDTO, Project>();
 
+            //za kreiranje projekta
             CreateMap<CreateProjectDTO, Project>()
-                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => new Client
-                {
-                    Name = src.Client
-                }))
-                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => new User
-                {
-                    Name = src.Lead
-                }))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description));
-            
+            .ForPath(dest => dest.Client.Id, opt => opt.MapFrom(src => src.ClientId))
+            .ForPath(dest => dest.Lead.Id, opt => opt.MapFrom(src => src.LeadId));
+
+            CreateMap<Project, ProjectEntity>()
+            .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client))
+            .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => src.Lead));
+
+            //za prikaz projekta
+            CreateMap<Client, ClientEntity>().ReverseMap();
+
+            CreateMap<ProjectEntity, Project>()
+            .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client))
+            .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => src.Lead)).ReverseMap();
+
+            CreateMap<Project, ProjectDTO>()
+                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client))
+                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => src.Lead));
+
+            ////////////////////////////////////////////////////////////////////////
 
 
 

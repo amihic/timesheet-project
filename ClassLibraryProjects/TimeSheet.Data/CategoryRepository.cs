@@ -37,7 +37,7 @@ namespace TimeSheet.Data
         {
             var query = _timeSheetDbContext.Categories.AsQueryable();
 
-            if (searchParams.FirstLetter.HasValue && char.IsLetter((char)searchParams.FirstLetter))
+            if (searchParams.FirstLetter.HasValue)
             {
                 query = query.Where(category => EF.Functions.Like(category.Name, $"{searchParams.FirstLetter}%"));
             }
