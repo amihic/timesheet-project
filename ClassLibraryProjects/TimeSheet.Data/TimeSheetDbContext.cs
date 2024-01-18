@@ -23,6 +23,7 @@ namespace TimeSheet.Data
         public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ProjectEntity> Projects { get; set; }
+        public DbSet<ActivityEntity> Activities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,10 +61,16 @@ namespace TimeSheet.Data
                 .Property(e => e.Id)
                 .UseIdentityByDefaultColumn()
                 .ValueGeneratedOnAdd();
-
+             
             modelBuilder.Entity<ProjectEntity>()
                 .HasMany(x => x.UsersWorkingOn)
                 .WithMany(x => x.ProjectsWorkingOn);
+
+            modelBuilder.Entity<ActivityEntity>()
+                .HasQueryFilter(GetGeneralActivityFilter())
+                .Property(e => e.Id)
+                .UseIdentityByDefaultColumn()
+                .ValueGeneratedOnAdd();
 
             base.OnModelCreating(modelBuilder);
         }
@@ -96,7 +103,10 @@ namespace TimeSheet.Data
             return project => !project.IsDeleted;
         }
 
-
+        private Expression<Func<ActivityEntity, bool>> GetGeneralActivityFilter()
+        {
+            return activity => !activity.IsDeleted;
+        }
 
     }
 }

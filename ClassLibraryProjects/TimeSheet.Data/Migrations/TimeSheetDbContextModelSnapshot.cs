@@ -37,6 +37,52 @@ namespace TimeSheet.Data.Migrations
                     b.ToTable("ProjectEntityUserEntity");
                 });
 
+            modelBuilder.Entity("TimeSheet.Data.Entities.ActivityEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<double>("OverTime")
+                        .HasColumnType("double precision");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Time")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Activities");
+                });
+
             modelBuilder.Entity("TimeSheet.Data.Entities.CategoryEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -187,6 +233,27 @@ namespace TimeSheet.Data.Migrations
                         .HasForeignKey("UsersWorkingOnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TimeSheet.Data.Entities.ActivityEntity", b =>
+                {
+                    b.HasOne("TimeSheet.Data.Entities.CategoryEntity", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("TimeSheet.Data.Entities.ClientEntity", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("TimeSheet.Data.Entities.ProjectEntity", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TimeSheet.Data.Entities.ClientEntity", b =>

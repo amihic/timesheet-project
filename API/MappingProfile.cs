@@ -84,10 +84,25 @@ namespace API
                 .ForMember(dest => dest.UsersWorkingOn, opt => opt.MapFrom(src => src.UsersWorkingOn));
 
             ////////////////////////////////////////////////////////////////////////
+            CreateMap<Activity, ActivityDTO>();
+            CreateMap<ActivityDTO, Activity>();
+            //za kreiranje activity
+            CreateMap<CreateActivityDTO, Activity>()
+            .ForPath(dest => dest.Client.Id, opt => opt.MapFrom(src => src.ClientId))
+            .ForPath(dest => dest.Category.Id, opt => opt.MapFrom(src => src.CategoryId))
+            .ForPath(dest => dest.Project.Id, opt => opt.MapFrom(src => src.ProjectId));
+
+            CreateMap<Activity, ActivityEntity>()
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
+            .ForMember(dest => dest.Project, opt => opt.MapFrom(src => src.Project))
+            .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client));
 
 
-
-
+            //za prikaz activity
+            CreateMap<ActivityEntity, Activity>()
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
+            .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client))
+            .ForMember(dest => dest.Project, opt => opt.MapFrom(src => src.Project)).ReverseMap();
         }
     }
 }
