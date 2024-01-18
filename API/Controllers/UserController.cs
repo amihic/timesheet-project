@@ -39,6 +39,14 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory([FromRoute] int id)
+        {
+            _userService.DeleteUser(id);
+
+            return Ok();
+        }
+
         [HttpGet("/allUsers")]
         public async Task<IActionResult> GetUsersAsync([FromQuery] SearchParamsDTO searchParams)
         {
@@ -50,14 +58,5 @@ namespace API.Controllers
 
             return Ok(usersToReturn);
         }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCategory([FromRoute] int id)
-        {
-            _userService.DeleteUser(id);
-
-            return Ok();
-        }
-
     }
 }

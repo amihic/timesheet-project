@@ -6,5 +6,6 @@
         public int PageSize { get; set; } = 5;
         public char? FirstLetter { get; set; }
         public string? SearchText { get; set; }
+        public DateTime? Date {  get; set; }
     }
 }
