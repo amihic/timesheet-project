@@ -62,6 +62,25 @@ namespace TimeSheet.Data
         public async Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams)
         {
             var query = _timeSheetDbContext.Activities.AsQueryable();
+            
+            if (searchParams.Date.HasValue)
+            {
+                DateTimeOffset searchDate = new DateTimeOffset(searchParams.Date.Value.Date, TimeSpan.Zero);
+                query = query.Where(activity => activity.Date.Date == searchDate);
+            }
+
+            if (searchParams.StartTime.HasValue && searchParams.EndTime.HasValue)
+            {
+                DateTimeOffset start = new DateTimeOffset(searchParams.StartTime.Value.Date, TimeSpan.Zero);
+                DateTimeOffset end = new DateTimeOffset(searchParams.EndTime.Value.Date, TimeSpan.Zero);
+
+                if (end < start)
+                {
+                    throw new Exception("startno vreme mora biti manje od krajnjeg");
+                }
+
+                query = query.Where(activity => activity.Date.Date >= start && activity.Date.Date <= end);
+            }
 
             var totalActivities = await query.CountAsync();
 

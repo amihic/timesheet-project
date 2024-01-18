@@ -20,6 +20,8 @@ namespace TimeSheet.Domain.Helpers
         public char? FirstLetter { get; set; } 
         public string? SearchText { get; set; }
         public DateTime? Date { get; set; }
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set;}
 
     }
 }
