@@ -73,6 +73,7 @@ namespace TimeSheet.Data
             var paginatedProjects = await query
                 .Include(c => c.Client.Country)
                 .Include(c => c.Lead)
+                .Include(c => c.UsersWorkingOn)
                 .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)
                 .Take(searchParams.PageSize)
                 .ToListAsync();
@@ -92,6 +93,12 @@ namespace TimeSheet.Data
         public void UpdateProject(Project project)
         {
             var projectToUpdate = _timeSheetDbContext.Projects.Find(project.Id);
+
+            if (projectToUpdate == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             var projectChanges = _mapper.Map<Project, ProjectEntity>(project);
 
             projectToUpdate.Name = projectChanges.Name;

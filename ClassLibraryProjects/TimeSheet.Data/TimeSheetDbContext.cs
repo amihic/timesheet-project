@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Azure;
 using Microsoft.EntityFrameworkCore;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain;
@@ -49,10 +50,20 @@ namespace TimeSheet.Data
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<ProjectEntity>()
+                .HasOne(p => p.Lead)
+                .WithMany()
+                .HasForeignKey(p => p.LeadId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ProjectEntity>()
                 .HasQueryFilter(GetGeneralProjectFilter())
                 .Property(e => e.Id)
                 .UseIdentityByDefaultColumn()
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<ProjectEntity>()
+                .HasMany(x => x.UsersWorkingOn)
+                .WithMany(x => x.ProjectsWorkingOn);
 
             base.OnModelCreating(modelBuilder);
         }

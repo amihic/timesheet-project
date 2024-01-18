@@ -33,6 +33,12 @@ namespace TimeSheet.Data
         public void DeleteUser(int id)
         {
             var userToDelete = _timeSheetDbContext.Users.Find(id);
+
+            if (userToDelete == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             userToDelete.IsDeleted = true;
             _timeSheetDbContext.Users.Update(userToDelete);
             SaveChanges();
@@ -73,6 +79,11 @@ namespace TimeSheet.Data
         public void UpdateUser(User user)
         {
             var userToUpdate = _timeSheetDbContext.Users.Find(user.Id);
+
+            if (userToUpdate == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
 
             var userChanges = _mapper.Map<User, UserEntity>(user);
 

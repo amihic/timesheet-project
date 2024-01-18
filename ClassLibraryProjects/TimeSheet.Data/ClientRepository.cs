@@ -41,6 +41,12 @@ namespace TimeSheet.Data
         public void DeleteClient(int id)
         {
             var clientToDelete = _timeSheetDbContext.Clients.Find(id);
+
+            if (clientToDelete == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             clientToDelete.IsDeleted = true;
             _timeSheetDbContext.Clients.Update(clientToDelete);
             SaveChanges();
@@ -82,6 +88,12 @@ namespace TimeSheet.Data
         public void UpdateClient(Client client)
         {
             var clientToUpdate = _timeSheetDbContext.Clients.Find(client.Id);
+
+            if (clientToUpdate == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             var clientChanges = _mapper.Map<Client, ClientEntity>(client);
 
             clientToUpdate.Name = clientChanges.Name;

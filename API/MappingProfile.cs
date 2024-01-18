@@ -38,7 +38,7 @@ namespace API
             .ForPath(dest => dest.Country, opt => opt.MapFrom(src => src.Country));
             //za prikaz Clienta
             CreateMap<Country, CountryEntity>().ReverseMap();
-
+            CreateMap<CountryDTO, Country>();
             CreateMap<ClientEntity, Client>()
             .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
             .ForPath(dest => dest.Country.Id, opt => opt.MapFrom(src => src.Country.Id))
@@ -80,7 +80,8 @@ namespace API
 
             CreateMap<Project, ProjectDTO>()
                 .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client))
-                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => src.Lead));
+                .ForMember(dest => dest.Lead, opt => opt.MapFrom(src => src.Lead))
+                .ForMember(dest => dest.UsersWorkingOn, opt => opt.MapFrom(src => src.UsersWorkingOn));
 
             ////////////////////////////////////////////////////////////////////////
 

@@ -28,6 +28,12 @@ namespace TimeSheet.Data
         public void DeleteCategory(int id)//logicko brisanje
         {
             var categoryToDelete = _timeSheetDbContext.Categories.Find(id);
+
+            if (categoryToDelete == null) 
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             categoryToDelete.IsDeleted = true;
             _timeSheetDbContext.Categories.Update(categoryToDelete);
             SaveChanges();
@@ -76,6 +82,12 @@ namespace TimeSheet.Data
         public void UpdateCategory(Category category)
         {
             var categoryToUpdate = _timeSheetDbContext.Categories.Find(category.Id);
+
+            if (categoryToUpdate == null)
+            {
+                throw new DirectoryNotFoundException();
+            }
+
             var categoryChanges = _mapper.Map<Category, CategoryEntity>(category);
 
             categoryToUpdate.Name = categoryChanges.Name;

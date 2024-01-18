@@ -11,8 +11,10 @@ namespace TimeSheet.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int LeadId { get; set; }
         public Client Client { get; set; }
         public User Lead { get; set; }
+        public ICollection<User> UsersWorkingOn { get; set; }
         public Boolean IsActived { get; set; }
         public Boolean IsDeleted { get; set; }
     }

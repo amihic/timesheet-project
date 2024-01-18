@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeSheet.Domain.Model;
-// p.id u.id
-//
+
 namespace TimeSheet.Data.Entities
 {
     public class ProjectEntity
@@ -17,8 +16,10 @@ namespace TimeSheet.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int LeadId { get; set; }
         public ClientEntity Client { get; set; }
         public UserEntity Lead { get; set; }
+        public ICollection<UserEntity> UsersWorkingOn { get; set; }
         public Boolean IsActived { get; set; }
         public Boolean IsDeleted { get; set; }
     }
