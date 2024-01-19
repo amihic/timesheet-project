@@ -155,3 +155,8 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\li
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\WebDriver.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll

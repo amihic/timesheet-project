@@ -7,15 +7,29 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain.Model;
 using TimeSheet.Domain.Helpers;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/category")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
 
         private readonly IMapper _mapper;
+
+        [HttpGet]
+        public IActionResult GetUserData()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userName = User.Identity.Name;
+
+            // Dobijanje drugih informacija o korisniku...
+
+            return Ok(new { UserId = userId, UserName = userName });
+        }
 
         public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
@@ -49,6 +63,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles="Administrators")]
         [HttpGet("/allCategories")]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {

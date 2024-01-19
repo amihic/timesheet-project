@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Azure;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TimeSheet.Data.Entities;
 using TimeSheet.Domain;
@@ -11,7 +12,7 @@ using TimeSheet.Domain.Model;
 
 namespace TimeSheet.Data
 {
-    public class TimeSheetDbContext : DbContext
+    public class TimeSheetDbContext : IdentityDbContext
     {
         public TimeSheetDbContext(DbContextOptions<TimeSheetDbContext> options) : base(options)
         {
