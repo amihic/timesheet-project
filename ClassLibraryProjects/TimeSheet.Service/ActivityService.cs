@@ -56,6 +56,48 @@ namespace TimeSheet.Service
             return workingDay;
         }
 
+        public async Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams parameters) 
+        {
+            List<WorkingDay> workingDays = new List<WorkingDay>();
+            WorkingCalendar workingCalendar = new WorkingCalendar();
+            var activities = await _activityRepository.GetActivitiesAsync(parameters);
+
+            var totalHours = 0.0;           
+
+            var groupedActivitiesByDate = activities.GroupBy(a => a.Date.Date);
+            var groupedActivitiesByDateToReturn = groupedActivitiesByDate.ToDictionary(group => group.Key, group => group.ToList());
+
+            foreach (var key in groupedActivitiesByDateToReturn) 
+            {
+                DateTime datum = key.Key;              
+                List<Activity> listaAktivnosti = key.Value;
+                WorkingDay workingDay = new WorkingDay();
+
+                foreach (var activity in listaAktivnosti)
+                {
+                    workingDay.NumberOfHours += activity.Time;
+                    workingDay.Date = activity.Date;
+                    totalHours += activity.Time;
+                }
+                if (workingDay.NumberOfHours > 0 && workingDay.NumberOfHours < 7.5)
+                    workingDay.WorkStatus = WorkStatus.UNFINISHED;
+                else if (workingDay.NumberOfHours == 0)
+                    workingDay.WorkStatus = WorkStatus.IDLE;
+                else if (workingDay.NumberOfHours == 7.5)
+                    workingDay.WorkStatus = WorkStatus.FINISHED;
+                else if (workingDay.NumberOfHours > 7.5)
+                    workingDay.WorkStatus = WorkStatus.FINISHED_AND_OVERTIME;
+
+                workingDays.Add(workingDay);
+            }
+            workingCalendar.WorkingDays = workingDays;
+            workingCalendar.TotalHours = totalHours;
+
+
+
+            return workingCalendar;
+        }
+
         public void UpdateActivity(Activity activity)
         {
             _activityRepository.UpdateActivity(activity);

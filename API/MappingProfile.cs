@@ -105,6 +105,8 @@ namespace API
             .ForMember(dest => dest.Project, opt => opt.MapFrom(src => src.Project)).ReverseMap();
             ////////////////////////////////////////////////////////////////////////
             CreateMap<WorkingDay, WorkingDayDTO>();
+            CreateMap<WorkingCalendar, WorkingCalendarDTO > ()
+                .ForMember(dest => dest.WorkingDays, opt => opt.MapFrom(src => src.WorkingDays));
 
 
         }

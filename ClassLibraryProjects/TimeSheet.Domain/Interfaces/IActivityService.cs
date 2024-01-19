@@ -15,5 +15,6 @@ namespace TimeSheet.Domain.Interfaces
         Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams);
         void DeleteActivity(int id);
         Task<WorkingDay> GetWorkingDayAsync(SearchParams searchParams);
+        Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams searchParams);
     }
 }

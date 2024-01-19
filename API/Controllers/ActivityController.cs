@@ -71,6 +71,16 @@ namespace API.Controllers
             return Ok(workingDayToReturn);
         }
 
-        
+        [HttpGet("/workingCalendar")]
+        public async Task<IActionResult> GetWorkingCalendarAsync([FromQuery] SearchParamsDTO searchParams, double time)
+        {
+            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+
+            var workingCalendar = await _activityService.GetWorkingCalendarAsync(parameters);
+
+            var workingCalendarToReturn = _mapper.Map<WorkingCalendar, WorkingCalendarDTO>(workingCalendar);
+
+            return Ok(workingCalendarToReturn);
+        }
     }
 }
