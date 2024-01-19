@@ -1,88 +1,66 @@
-﻿using API.Errors;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+﻿using API.Middleware;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using OpenQA.Selenium;
+using System;
 using System.Net;
-using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace API.Middleware
+public class ExceptionMiddleware
 {
-    public class ExceptionMiddleware
+    private readonly RequestDelegate _next;
+
+    public ExceptionMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public ExceptionMiddleware(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
+            await _next(context);
         }
-
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception exception)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                await HandleExceptionAsync(context, ex);
-            }
-        }
+            CustomErrorResponse customResponse = new CustomErrorResponse();
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
-        {
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = GetStatusCode(exception);
-
-            var response = new
-            {
-                StatusCode = context.Response.StatusCode,
-                Message = exception.Message
-            };
-
-            var json = JsonConvert.SerializeObject(response);
-            return context.Response.WriteAsync(json);
-        }
-
-        private int GetStatusCode(Exception exception)
-        {
             switch (exception)
             {
                 case UnauthorizedAccessException _:
-                    return (int)HttpStatusCode.Unauthorized;
-                case DirectoryNotFoundException _:
-                    return (int)HttpStatusCode.NotFound;
+                    customResponse.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    customResponse.Message = "Unauthorized access.";
+                    break;
                 case NotFoundException _:
-                    return (int)HttpStatusCode.NotFound;
-                case BadRequestException _:
-                    return (int)HttpStatusCode.BadRequest;
-                case NullReferenceException _://pitaj
-                    return (int)HttpStatusCode.BadRequest;
+                    customResponse.StatusCode = (int)HttpStatusCode.NotFound;
+                    customResponse.Message = "Resource not found.";
+                    break;
+                case DirectoryNotFoundException _:
+                    customResponse.StatusCode = (int)HttpStatusCode.NotFound;
+                    customResponse.Message = "Resource not found.";
+                    break;
+                case FormatException _:
+                case NullReferenceException _:
+                    customResponse.StatusCode = (int)HttpStatusCode.BadRequest;
+                    customResponse.Message = "Bad request format.";
+                    break;
                 default:
-                    return (int)HttpStatusCode.InternalServerError;
+                    customResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    customResponse.Message = "Internal server error.";
+                    break;
             }
+
+            context.Response.StatusCode = customResponse.StatusCode;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(customResponse));
         }
     }
+}
 
-    public class NotFoundException : Exception
+public static class CustomExceptionHandlerMiddlewareExtensions
+{
+    public static IApplicationBuilder UseCustomExceptionHandler(this IApplicationBuilder builder)
     {
-        public NotFoundException(string message) : base(message)
-        {
-        }
-    }
-
-    public class BadRequestException : Exception
-    {
-        public BadRequestException(string message) : base(message)
-        {
-        }
-    }
-    public class HttpResponseException : Exception
-    {
-        public int StatusCode { get; set; }
-
-        public HttpResponseException(int statusCode, string message) : base(message)
-        {
-            StatusCode = statusCode;
-        }
+        return builder.UseMiddleware<ExceptionMiddleware>();
     }
 }

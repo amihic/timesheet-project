@@ -22,7 +22,7 @@ namespace API
             CreateMap<Category, CategoryDTO>();
             CreateMap<Category, CategoryEntity>();
 
-            CreateMap<SearchParamsDTO, SearchParams>();
+            
 
             CreateMap<string, Country>().ConstructUsing(src => new Country { Name = src });
             ////////////////////////////////////////////////////////////////////////
@@ -107,6 +107,10 @@ namespace API
             CreateMap<WorkingDay, WorkingDayDTO>();
             CreateMap<WorkingCalendar, WorkingCalendarDTO > ()
                 .ForMember(dest => dest.WorkingDays, opt => opt.MapFrom(src => src.WorkingDays));
+
+            CreateMap<SearchParamsForReportsDTO, SearchParams>();
+            CreateMap<SearchParamsForCliCatProUseDTO, SearchParams>();
+            CreateMap<SearchParamsForCalendarDTO, SearchParams>();
 
 
         }

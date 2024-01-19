@@ -48,9 +48,9 @@ namespace API.Controllers
         }
 
         [HttpGet("/allProjects")]
-        public async Task<IActionResult> GetProjectsAsync([FromQuery] SearchParamsDTO searchParams)
+        public async Task<IActionResult> GetProjectsAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+            var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
 
             var projects = await _projectService.GetProjectsAsync(parameters);
 

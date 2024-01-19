@@ -48,9 +48,9 @@ namespace API.Controllers
         }
 
         [HttpGet("/allUsers")]
-        public async Task<IActionResult> GetUsersAsync([FromQuery] SearchParamsDTO searchParams)
+        public async Task<IActionResult> GetUsersAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+            var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
 
             var users = await _userService.GetUsersAsync(parameters);
 

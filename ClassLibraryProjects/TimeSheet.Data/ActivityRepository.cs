@@ -62,7 +62,27 @@ namespace TimeSheet.Data
         public async Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams)
         {
             var query = _timeSheetDbContext.Activities.AsQueryable();
-            
+
+            if (searchParams.ClientId.HasValue)
+            {
+                query = query.Where(activity => activity.Client.Id == searchParams.ClientId.Value);
+            }
+
+            if (searchParams.UserId.HasValue)
+            {
+                query = query.Where(activity => activity.UserId == searchParams.UserId.Value);
+            }
+
+            if (searchParams.CategoryId.HasValue)
+            {
+                query = query.Where(activity => activity.Category.Id == searchParams.CategoryId.Value);
+            }
+
+            if (searchParams.ProjectId.HasValue)
+            {
+                query = query.Where(activity => activity.Project.Id == searchParams.ProjectId.Value);
+            }
+
             if (searchParams.Date.HasValue)
             {
                 DateTimeOffset searchDate = new DateTimeOffset(searchParams.Date.Value.Date, TimeSpan.Zero);

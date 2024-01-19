@@ -151,3 +151,7 @@ C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.AspNetCor
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+C:\Users\aleksa.mihic\Desktop\TimeSheet\API\bin\Debug\net8.0\WebDriver.dll

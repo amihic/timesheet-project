@@ -3,6 +3,7 @@
     public class ActivityDTO
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public DateTime Date { get; set; }
         public ClientDTO Client { get; set; }
         public ProjectDTO Project { get; set; }

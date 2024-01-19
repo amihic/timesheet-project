@@ -50,9 +50,9 @@ namespace API.Controllers
         }
 
         [HttpGet("/allCategories")]
-        public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsDTO searchParams)
+        public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+            var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
 
             var categories = await _categoryService.GetCategoriesAsync(parameters);
 

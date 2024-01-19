@@ -33,29 +33,6 @@ namespace TimeSheet.Service
             return _activityRepository.GetActivitiesAsync(parameters);
         }
 
-        public async Task<WorkingDay> GetWorkingDayAsync(SearchParams parameters)
-        {
-            WorkingDay workingDay = new WorkingDay();
-            var activities = await _activityRepository.GetActivitiesAsync(parameters);
-
-            foreach (var activity in activities) 
-            {
-                workingDay.NumberOfHours += activity.Time;
-                workingDay.Date = activity.Date;
-            }
-
-            if (workingDay.NumberOfHours > 0 && workingDay.NumberOfHours < 7.5)
-                workingDay.WorkStatus = WorkStatus.UNFINISHED;
-            else if (workingDay.NumberOfHours == 0)
-                workingDay.WorkStatus = WorkStatus.IDLE;
-            else if (workingDay.NumberOfHours == 7.5)
-                workingDay.WorkStatus = WorkStatus.FINISHED;
-            else if (workingDay.NumberOfHours > 7.5)
-                workingDay.WorkStatus = WorkStatus.FINISHED_AND_OVERTIME;
-
-            return workingDay;
-        }
-
         public async Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams parameters) 
         {
             List<WorkingDay> workingDays = new List<WorkingDay>();

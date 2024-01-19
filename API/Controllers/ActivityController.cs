@@ -47,10 +47,10 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpGet("/allActivities")]
-        public async Task<IActionResult> GetActivitiesAsync([FromQuery] SearchParamsDTO searchParams)
+        [HttpGet("/reports")]
+        public async Task<IActionResult> GetActivitiesAsync([FromQuery] SearchParamsForReportsDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+            var parameters = _mapper.Map<SearchParamsForReportsDTO, SearchParams>(searchParams);
 
             var activities = await _activityService.GetActivitiesAsync(parameters);
 
@@ -58,23 +58,11 @@ namespace API.Controllers
 
             return Ok(activitiesToReturn);
         }
-        //za working day
-        [HttpGet("/workingDay")]
-        public async Task<IActionResult> GetWorkingDayAsync([FromQuery] SearchParamsDTO searchParams)
-        {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
-
-            var workingDay = await _activityService.GetWorkingDayAsync(parameters);
-
-            var workingDayToReturn = _mapper.Map<WorkingDay, WorkingDayDTO>(workingDay);
-
-            return Ok(workingDayToReturn);
-        }
-
+        
         [HttpGet("/workingCalendar")]
-        public async Task<IActionResult> GetWorkingCalendarAsync([FromQuery] SearchParamsDTO searchParams, double time)
+        public async Task<IActionResult> GetWorkingCalendarAsync([FromQuery] SearchParamsForCalendarDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+            var parameters = _mapper.Map<SearchParamsForCalendarDTO, SearchParams>(searchParams);
 
             var workingCalendar = await _activityService.GetWorkingCalendarAsync(parameters);
 
@@ -82,5 +70,17 @@ namespace API.Controllers
 
             return Ok(workingCalendarToReturn);
         }
+
+        /*[HttpGet("/reports")]
+        public async Task<IActionResult> GetReportsAsync([FromQuery] SearchParamsDTO searchParams, double time)
+        {
+            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+
+            var activities = await _activityService.GetWorkingCalendarAsync(parameters);
+
+            var activitiesToReturn = _mapper.Map<Activity, ActivityDTO>(activities);
+
+            return Ok(activitiesToReturn);
+        }*/
     }
 }
