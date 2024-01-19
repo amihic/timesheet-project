@@ -14,5 +14,6 @@ namespace TimeSheet.Domain.Interfaces
         void UpdateActivity(Activity activity);
         Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams);
         void DeleteActivity(int id);
+        Task<WorkingDay> GetWorkingDayAsync(SearchParams searchParams);
     }
 }

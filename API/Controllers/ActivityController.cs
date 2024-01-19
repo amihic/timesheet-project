@@ -58,5 +58,19 @@ namespace API.Controllers
 
             return Ok(activitiesToReturn);
         }
+        //za working day
+        [HttpGet("/workingDay")]
+        public async Task<IActionResult> GetWorkingDayAsync([FromQuery] SearchParamsDTO searchParams)
+        {
+            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
+
+            var workingDay = await _activityService.GetWorkingDayAsync(parameters);
+
+            var workingDayToReturn = _mapper.Map<WorkingDay, WorkingDayDTO>(workingDay);
+
+            return Ok(workingDayToReturn);
+        }
+
+        
     }
 }

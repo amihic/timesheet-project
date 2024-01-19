@@ -10,12 +10,13 @@ namespace TimeSheet.Domain.Model
     {
         FINISHED,
         UNFINISHED,
-        IDLE
+        IDLE,
+        FINISHED_AND_OVERTIME
     }
     public class WorkingDay
     {
         public int Id { get; set; }
-        public int NumberOfHours { get; set; }
+        public double NumberOfHours { get; set; } = 0;
         public DateTime Date { get; set; }
         public WorkStatus WorkStatus { get; set; }
     }
