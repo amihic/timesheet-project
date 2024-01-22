@@ -15,5 +15,6 @@ namespace TimeSheet.Domain.Interfaces
         void CreateUser(User user);
         void UpdateUser(User user);
         void SaveChanges();
+        User GetUserByEmail(string email);
     }
 }

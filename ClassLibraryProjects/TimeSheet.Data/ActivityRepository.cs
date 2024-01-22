@@ -108,8 +108,6 @@ namespace TimeSheet.Data
                 .Include(c => c.Client.Country)
                 .Include(c => c.Project.Client)
                 .Include(c => c.Category)
-                .Skip((searchParams.PageIndex - 1) * searchParams.PageSize)
-                .Take(searchParams.PageSize)
                 .ToListAsync();
 
             var pagination = new Pagination<ActivityEntity>(searchParams.PageIndex, searchParams.PageSize, totalActivities, paginatedActivities);

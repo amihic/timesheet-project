@@ -34,14 +34,14 @@ namespace TimeSheet.Service
         }
 
         public async Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams parameters) 
-        {
+        {//trebace id za ulogovanog korisnika
             List<WorkingDay> workingDays = new List<WorkingDay>();
             WorkingCalendar workingCalendar = new WorkingCalendar();
             var activities = await _activityRepository.GetActivitiesAsync(parameters);
 
             var totalHours = 0.0;           
 
-            var groupedActivitiesByDate = activities.GroupBy(a => a.Date.Date);
+            var groupedActivitiesByDate = activities.GroupBy(a => a.Date.Date)/*.Select(x => MapActivity(x)).ToList()*/;// u map activity ubaci foreach ceo prvi, vraca workingday
             var groupedActivitiesByDateToReturn = groupedActivitiesByDate.ToDictionary(group => group.Key, group => group.ToList());
 
             foreach (var key in groupedActivitiesByDateToReturn) 
@@ -56,7 +56,7 @@ namespace TimeSheet.Service
                     workingDay.Date = activity.Date;
                     totalHours += activity.Time;
                 }
-                if (workingDay.NumberOfHours > 0 && workingDay.NumberOfHours < 7.5)
+                if (workingDay.NumberOfHours > 0 && workingDay.NumberOfHours < 7.5)// ne 7.5 nego neka konstanta, imam hours per week, to se deli sa 5 i proverava
                     workingDay.WorkStatus = WorkStatus.UNFINISHED;
                 else if (workingDay.NumberOfHours == 0)
                     workingDay.WorkStatus = WorkStatus.IDLE;

@@ -28,6 +28,11 @@ namespace TimeSheet.Service
             _userRepository.DeleteUser(id);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetUserByEmail(email);
+        }
+
         public Task<IEnumerable<User>> GetUsersAsync(SearchParams searchParams)
         {
             return _userRepository.GetUsersAsync(searchParams);

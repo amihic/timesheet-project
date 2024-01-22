@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "NSOh4e1eMPuVH5CPKx1WNVUNUUE51dSFtTiLpN8yI+TLUNjZcoeP4fA6zN24wnbzBTvAicBavHkCa/aNCQimuA==",
+  "dgSpecHash": "1JUntOpwty3m1wYD8TBtMbWZxWUbtzMeykpRi4roK//wJFBK+/Dr7qCF+S4ZGWIx4NvJ5F/6aqLptzYc2FTxVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.1.2\\microsoft.identitymodel.abstractions.7.1.2.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.1.2\\microsoft.identitymodel.jsonwebtokens.7.1.2.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.identitymodel.logging\\7.1.2\\microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
+    "C:\\Users\\aleksa.mihic\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
+  ],
   "logs": []
 }

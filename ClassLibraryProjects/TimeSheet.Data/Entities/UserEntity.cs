@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace TimeSheet.Data.Entities
 {
+    public enum RoleType
+    {
+        ADMIN,
+        WORKER
+    }
     public class UserEntity
     {
         [Key]
@@ -18,6 +23,7 @@ namespace TimeSheet.Data.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public double HoursPerWeek { get; set; }
+        public RoleType RoleType { get; set; }
         public ICollection<ProjectEntity> ProjectsWorkingOn { get; set; }
         public Boolean IsActive { get; set; }
         public Boolean IsDeleted { get; set; }

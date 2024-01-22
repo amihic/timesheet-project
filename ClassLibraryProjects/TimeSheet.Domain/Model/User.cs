@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace TimeSheet.Domain.Model
 {
+    public enum RoleType
+    {
+        ADMIN,
+        WORKER
+    }
     public class User
     {
         public int Id { get; set; }
@@ -14,6 +19,7 @@ namespace TimeSheet.Domain.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public double HoursPerWeek { get; set; }
+        public RoleType Role { get; set; }
         public ICollection<Project> ProjectsWorkingOn { get; set; }
         public Boolean IsActive { get; set; }
         public Boolean IsDeleted { get; set; }

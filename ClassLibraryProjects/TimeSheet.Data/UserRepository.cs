@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TimeSheet.Data.Entities;
@@ -42,6 +43,19 @@ namespace TimeSheet.Data
             userToDelete.IsDeleted = true;
             _timeSheetDbContext.Users.Update(userToDelete);
             SaveChanges();
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            var user =  _timeSheetDbContext.Users.FirstOrDefault(x => x.Email == email);
+            //Console.WriteLine(user.Email);
+            if (user == null) 
+            {
+                Console.WriteLine("nije nasao usera");
+                throw new DirectoryNotFoundException(email);
+            }
+            var userToReturn = _mapper.Map<UserEntity, User>(user);
+            return userToReturn;
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync(SearchParams searchParams)
