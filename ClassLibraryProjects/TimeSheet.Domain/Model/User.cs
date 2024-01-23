@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace TimeSheet.Domain.Model
 {
-    public enum RoleType
-    {
-        ADMIN,
-        WORKER
-    }
     public class User
     {
         public int Id { get; set; }

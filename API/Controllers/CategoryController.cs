@@ -23,10 +23,9 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult GetUserData()
         {
+            HttpContext.User.Claims.FirstOrDefault();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var userName = User.Identity.Name;
-
-            // Dobijanje drugih informacija o korisniku...
 
             return Ok(new { UserId = userId, UserName = userName });
         }
@@ -63,19 +62,22 @@ namespace API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles="Administrators")]
+        [Authorize(Roles="Worker")]
         [HttpGet("/allCategories")]
+        [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
+            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
+            
+            //Console.WriteLine(loggedInUser.Id);
 
+            var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
+            
             var categories = await _categoryService.GetCategoriesAsync(parameters);
 
             var categoriesToReturn = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
 
             return Ok(categoriesToReturn);
         }
-
-
     }
 }

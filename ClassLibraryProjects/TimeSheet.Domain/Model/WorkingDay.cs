@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace TimeSheet.Domain.Model
 {
-    public enum WorkStatus
-    {
-        FINISHED,
-        UNFINISHED,
-        IDLE,
-        FINISHED_AND_OVERTIME
-    }
     public class WorkingDay
     {
         public int Id { get; set; }

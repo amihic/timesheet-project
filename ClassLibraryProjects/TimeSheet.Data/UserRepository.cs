@@ -14,12 +14,15 @@ namespace TimeSheet.Data
     {
         private readonly TimeSheetDbContext _timeSheetDbContext;
 
+        private readonly IPasswordHasher<User> _passwordHasher;
+
         private readonly IMapper _mapper;
 
-        public UserRepository(IMapper mapper, TimeSheetDbContext timeSheetDbContext)
+        public UserRepository(IMapper mapper, TimeSheetDbContext timeSheetDbContext, IPasswordHasher<User> passwordHasher)
         {
             _mapper = mapper;
             _timeSheetDbContext = timeSheetDbContext;
+            _passwordHasher = passwordHasher;
         }
         public void CreateUser(User user)
         {
@@ -45,17 +48,27 @@ namespace TimeSheet.Data
             SaveChanges();
         }
 
-        public User GetUserByEmail(string email)
+        public User GetUserByEmail(User user)
         {
-            var user =  _timeSheetDbContext.Users.FirstOrDefault(x => x.Email == email);
-            //Console.WriteLine(user.Email);
-            if (user == null) 
+            var userToLogIn =  _timeSheetDbContext.Users.FirstOrDefault(x => x.Email == user.Email);
+            
+            if (userToLogIn == null) 
             {
                 Console.WriteLine("nije nasao usera");
-                throw new DirectoryNotFoundException(email);
+                throw new DirectoryNotFoundException();
             }
-            var userToReturn = _mapper.Map<UserEntity, User>(user);
-            return userToReturn;
+
+            var userToReturn = _mapper.Map<UserEntity, User>(userToLogIn);
+
+            var result = _passwordHasher.VerifyHashedPassword(userToReturn, userToReturn.Password, user.Password);
+
+            if (result == Microsoft.AspNetCore.Identity.PasswordVerificationResult.Success)
+            {
+                Console.WriteLine("User: " + userToLogIn.Email + " je ulogovan" );
+                return userToReturn;
+            }
+
+            throw new Exception();           
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync(SearchParams searchParams)

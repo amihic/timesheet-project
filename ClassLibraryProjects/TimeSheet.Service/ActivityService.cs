@@ -13,14 +13,18 @@ namespace TimeSheet.Service
     {
         private readonly IActivityRepository _activityRepository;
 
+        private const double FullTime = 7.5;
+        private const double DaysPerWeek = 5.0;
+        private const double PartTime = 4.0;
+
 
         public ActivityService(IActivityRepository activityRepository)
         {
             _activityRepository = activityRepository;
         }
-        public void CreateActivity(Activity newActivity)
+        public void CreateActivity(Activity newActivity, int LoggedInUserId)
         {
-            _activityRepository.CreateActivity(newActivity);
+            _activityRepository.CreateActivity(newActivity, LoggedInUserId);
         }
 
         public void DeleteActivity(int id)
@@ -33,47 +37,52 @@ namespace TimeSheet.Service
             return _activityRepository.GetActivitiesAsync(parameters);
         }
 
-        public async Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams parameters) 
-        {//trebace id za ulogovanog korisnika
-            List<WorkingDay> workingDays = new List<WorkingDay>();
-            WorkingCalendar workingCalendar = new WorkingCalendar();
+        public async Task<WorkingCalendar> GetWorkingCalendarAsync(SearchParams parameters)
+        {
             var activities = await _activityRepository.GetActivitiesAsync(parameters);
 
-            var totalHours = 0.0;           
+            var groupedActivitiesByDate = activities
+                .GroupBy(a => a.Date.Date)
+                .Select(MapActivitiesToWorkingDay)
+                .ToList();
 
-            var groupedActivitiesByDate = activities.GroupBy(a => a.Date.Date)/*.Select(x => MapActivity(x)).ToList()*/;// u map activity ubaci foreach ceo prvi, vraca workingday
-            var groupedActivitiesByDateToReturn = groupedActivitiesByDate.ToDictionary(group => group.Key, group => group.ToList());
-
-            foreach (var key in groupedActivitiesByDateToReturn) 
-            {
-                DateTime datum = key.Key;              
-                List<Activity> listaAktivnosti = key.Value;
-                WorkingDay workingDay = new WorkingDay();
-
-                foreach (var activity in listaAktivnosti)
-                {
-                    workingDay.NumberOfHours += activity.Time;
-                    workingDay.Date = activity.Date;
-                    totalHours += activity.Time;
-                }
-                if (workingDay.NumberOfHours > 0 && workingDay.NumberOfHours < 7.5)// ne 7.5 nego neka konstanta, imam hours per week, to se deli sa 5 i proverava
-                    workingDay.WorkStatus = WorkStatus.UNFINISHED;
-                else if (workingDay.NumberOfHours == 0)
-                    workingDay.WorkStatus = WorkStatus.IDLE;
-                else if (workingDay.NumberOfHours == 7.5)
-                    workingDay.WorkStatus = WorkStatus.FINISHED;
-                else if (workingDay.NumberOfHours > 7.5)
-                    workingDay.WorkStatus = WorkStatus.FINISHED_AND_OVERTIME;
-
-                workingDays.Add(workingDay);
-            }
-            workingCalendar.WorkingDays = workingDays;
-            workingCalendar.TotalHours = totalHours;
-
+            WorkingCalendar workingCalendar = new WorkingCalendar();
+            workingCalendar.WorkingDays = groupedActivitiesByDate;
+            workingCalendar.TotalHours = activities.Sum(x => x.Time);
 
 
             return workingCalendar;
         }
+
+        private WorkingDay MapActivitiesToWorkingDay(IEnumerable<Activity> activities)
+        {
+            WorkingDay workingDay = new WorkingDay();
+            
+            workingDay.NumberOfHours = activities.Sum(x => x.Time);
+            workingDay.Date = activities.FirstOrDefault().Date;
+
+            //var hpw = activities.Select(user => user.User.HoursPerWeek).FirstOrDefault();
+
+
+            SetWokringDayStatus(workingDay);
+
+            return workingDay;
+        }
+
+        private WorkingDay SetWokringDayStatus(WorkingDay workingDay)
+        {
+            /*var workingHoursPerDay = hpw / DaysPerWeek;
+
+            if (workingHoursPerDay == PartTime)
+                workingDay.WorkStatus = WorkStatus.PartTime;
+            else if (workingHoursPerDay == 0)
+                workingDay.WorkStatus = WorkStatus.Idle;
+            else if (workingHoursPerDay >= FullTime)
+                workingDay.WorkStatus = WorkStatus.FullTime;*/
+            workingDay.WorkStatus = WorkStatus.FullTime;
+            return workingDay;
+        }
+
 
         public void UpdateActivity(Activity activity)
         {

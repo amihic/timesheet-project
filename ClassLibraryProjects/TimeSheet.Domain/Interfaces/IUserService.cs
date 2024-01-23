@@ -14,6 +14,6 @@ namespace TimeSheet.Domain.Interfaces
         void UpdateUser(User user);
         Task<IEnumerable<User>> GetUsersAsync(SearchParams searchParams);
         void DeleteUser(int id);
-        User GetUserByEmail(string email);
+        User GetUserByEmail(User user);
     }
 }

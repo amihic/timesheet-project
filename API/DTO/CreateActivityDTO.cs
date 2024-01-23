@@ -2,7 +2,7 @@
 {
     public class CreateActivityDTO
     {
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
         public DateTime Date { get; set; }
         public int ClientId { get; set; }
         public int ProjectId { get; set; }

@@ -1,24 +1,17 @@
-using AutoMapper;
 using TimeSheet.Service;
 using TimeSheet.Data;
 using Microsoft.EntityFrameworkCore;
 using API;
 using TimeSheet.Domain.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-
-using API.Middleware;
-using TimeSheet.Domain.Model;
-using TimeSheet.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Authentication;
 using API.Controllers;
-using System.Net.Http.Headers;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using TimeSheet.Data.Entities;
+using API.CustomAuthorizationFilter;
+using Microsoft.AspNetCore.Identity;
+using TimeSheet.Domain.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,10 +25,16 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<TimeSheetDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+//kada necu autorizaciju, samo da zakomentarisem ovaj blok
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(CustomAuthorizationFilter));
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // Registracija servisa u DI kontejneru
 builder.Services.AddScoped<UserController>();
@@ -57,6 +56,8 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
 //za auth
 builder.Services.AddAuthentication(options =>
 {
@@ -73,17 +74,18 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+        RoleClaimType = "Role"
     };
 });
 
-builder.Services.AddAuthorization();
+
 
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(c => //swagger sa authorize 
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "You api title", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TimeSheet API", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
@@ -114,7 +116,6 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 });
-//builder.Services.AddTransient<IConfigureOptions<SwaggerOptions>, ConfigureSwaggerOptions>();
 
 var app = builder.Build();
 

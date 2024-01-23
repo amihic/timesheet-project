@@ -31,6 +31,7 @@ public class ExceptionMiddleware
                     customResponse.StatusCode = (int)HttpStatusCode.Unauthorized;
                     customResponse.Message = "Unauthorized access.";
                     break;
+                
                 case NotFoundException _:
                     customResponse.StatusCode = (int)HttpStatusCode.NotFound;
                     customResponse.Message = "Resource not found.";
@@ -43,6 +44,10 @@ public class ExceptionMiddleware
                 case NullReferenceException _:
                     customResponse.StatusCode = (int)HttpStatusCode.BadRequest;
                     customResponse.Message = "Bad request format.";
+                    break;
+                case Exception _:
+                    customResponse.StatusCode = (int)HttpStatusCode.BadRequest;
+                    customResponse.Message = "Wrong password";
                     break;
                 default:
                     customResponse.StatusCode = (int)HttpStatusCode.InternalServerError;

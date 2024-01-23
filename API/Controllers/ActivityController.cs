@@ -1,5 +1,6 @@
 ﻿using API.DTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Interfaces;
@@ -21,11 +22,15 @@ namespace API.Controllers
             _activityService = activityService;
         }
 
+        [Authorize(Roles = "Worker")]
         [HttpPost]
+        [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public IActionResult CreateActivity([FromBody] CreateActivityDTO newActivityDto)
         {
+            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
+            
             var newActivity = _mapper.Map<CreateActivityDTO, Activity>(newActivityDto);
-            _activityService.CreateActivity(newActivity);
+            _activityService.CreateActivity(newActivity, loggedInUser.Id);
 
             return Ok();
         }
@@ -58,11 +63,17 @@ namespace API.Controllers
 
             return Ok(activitiesToReturn);
         }
-        
+
+        [Authorize(Roles = "Worker")]
         [HttpGet("/workingCalendar")]
+        [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetWorkingCalendarAsync([FromQuery] SearchParamsForCalendarDTO searchParams)
         {
-            var parameters = _mapper.Map<SearchParamsForCalendarDTO, SearchParams>(searchParams);
+            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
+
+            var parameters = _mapper.Map<SearchParamsForCalendarDTO, SearchParams>(searchParams);             
+
+            parameters.UserId = loggedInUser.Id;
 
             var workingCalendar = await _activityService.GetWorkingCalendarAsync(parameters);
 
@@ -70,17 +81,5 @@ namespace API.Controllers
 
             return Ok(workingCalendarToReturn);
         }
-
-        /*[HttpGet("/reports")]
-        public async Task<IActionResult> GetReportsAsync([FromQuery] SearchParamsDTO searchParams, double time)
-        {
-            var parameters = _mapper.Map<SearchParamsDTO, SearchParams>(searchParams);
-
-            var activities = await _activityService.GetWorkingCalendarAsync(parameters);
-
-            var activitiesToReturn = _mapper.Map<Activity, ActivityDTO>(activities);
-
-            return Ok(activitiesToReturn);
-        }*/
     }
 }

@@ -18,6 +18,7 @@ using Microsoft.AspNet.Identity;
 namespace API.Controllers
 {
     [Route("api/user")]
+   //[TypeFilter(typeof(API.CustomAuthorizationFilter.CustomAuthorizationFilter))]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -35,7 +36,7 @@ namespace API.Controllers
             _jwtService = jwtService;
         }
 
-        private bool IsValidUser(string email, string password)
+        /*private bool IsValidUser(string email, string password)
         {
             var user = _userService.GetUserByEmail(email);
             Console.WriteLine(user.Id);
@@ -44,33 +45,33 @@ namespace API.Controllers
                 Unauthorized();
                 return false;
             }
-            //Console.WriteLine(email);
+            
             return true;
-            //Console.WriteLine(email);
-            //return false;
-        }
+        }*/
 
         [HttpPost("/login")]
         [AllowAnonymous]
         public IActionResult Login([FromBody] LoginDTO model)
         {
-            var user = _userService.GetUserByEmail(model.Email);
-            
-            
-            var token = GenerateJwtToken(model.Email, user.Id);
+            var user = _mapper.Map<LoginDTO, User>(model);
+
+            var userToLogIn = _userService.GetUserByEmail(user);
+
+            var token = GenerateJwtToken(userToLogIn);
             return Ok(new { token });
         }
 
 
-        private string GenerateJwtToken(string email, int id)
+        private string GenerateJwtToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim("User id", id.ToString()),//id usera koji se ubacuje u token
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim("UserId", user.Id.ToString()),//id usera koji se ubacuje u token
+                new Claim("Role", user.Role.ToString())
             };
 
             var token = new JwtSecurityToken(

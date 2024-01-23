@@ -24,7 +24,7 @@ namespace TimeSheet.Data
             _mapper = mapper;
             _timeSheetDbContext = timeSheetDbContext;
         }
-        public void CreateActivity(Activity activity)
+        public void CreateActivity(Activity activity, int LoggedInUserId)
         {
             var project = _timeSheetDbContext.Projects.Find(activity.Project.Id);
             var client = _timeSheetDbContext.Clients.Find(activity.Client.Id);
@@ -36,6 +36,7 @@ namespace TimeSheet.Data
             }
 
             var activityToAdd = _mapper.Map<Activity, ActivityEntity>(activity);
+            activityToAdd.User.Id = LoggedInUserId;
             activityToAdd.Project = project;
             activityToAdd.Client = client;
             activityToAdd.Category = category;
@@ -61,7 +62,7 @@ namespace TimeSheet.Data
 
         public async Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams)
         {
-            var query = _timeSheetDbContext.Activities.AsQueryable();
+            var query = _timeSheetDbContext.Activities.AsQueryable().Where(activity => activity.User.Id == searchParams.UserId.Value);
 
             if (searchParams.ClientId.HasValue)
             {
@@ -70,7 +71,7 @@ namespace TimeSheet.Data
 
             if (searchParams.UserId.HasValue)
             {
-                query = query.Where(activity => activity.UserId == searchParams.UserId.Value);
+                query = query.Where(activity => activity.User.Id == searchParams.UserId.Value);
             }
 
             if (searchParams.CategoryId.HasValue)

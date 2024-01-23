@@ -112,6 +112,10 @@ namespace API
             CreateMap<SearchParamsForCliCatProUseDTO, SearchParams>();
             CreateMap<SearchParamsForCalendarDTO, SearchParams>();
 
+            CreateMap<LoginDTO, User>();
+
+
+
 
         }
     }

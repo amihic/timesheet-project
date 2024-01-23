@@ -12,7 +12,7 @@ namespace TimeSheet.Domain.Interfaces
     {
         Task<IEnumerable<Activity>> GetActivitiesAsync(SearchParams searchParams);
         void DeleteActivity(int id);
-        void CreateActivity(Activity activity);
+        void CreateActivity(Activity activity, int LoggedInUserId);
         void UpdateActivity(Activity activity);
         void SaveChanges();
     }

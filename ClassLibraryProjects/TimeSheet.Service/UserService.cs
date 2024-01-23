@@ -28,9 +28,9 @@ namespace TimeSheet.Service
             _userRepository.DeleteUser(id);
         }
 
-        public User GetUserByEmail(string email)
+        public User GetUserByEmail(User user)
         {
-            return _userRepository.GetUserByEmail(email);
+            return _userRepository.GetUserByEmail(user);
         }
 
         public Task<IEnumerable<User>> GetUsersAsync(SearchParams searchParams)

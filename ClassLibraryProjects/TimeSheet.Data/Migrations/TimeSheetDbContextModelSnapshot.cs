@@ -265,7 +265,7 @@ namespace TimeSheet.Data.Migrations
                     b.Property<double>("Time")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -275,6 +275,8 @@ namespace TimeSheet.Data.Migrations
                     b.HasIndex("ClientId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Activities");
                 });
@@ -408,7 +410,7 @@ namespace TimeSheet.Data.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
-                    b.Property<int>("RoleType")
+                    b.Property<int>("Role")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
@@ -499,11 +501,17 @@ namespace TimeSheet.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ProjectId");
 
+                    b.HasOne("TimeSheet.Data.Entities.UserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Category");
 
                     b.Navigation("Client");
 
                     b.Navigation("Project");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TimeSheet.Data.Entities.ClientEntity", b =>
