@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RWHLx47gMfsK4E5DbbGNyjxyfjGW5gUZiOe9wRtLrZUhI2I8SRzm43+Ss50PGfOJfj4ijP/ngt+BWNgv4NgEGQ==",
+  "dgSpecHash": "bDwQ2sFPErLROhtUxLEj44tmeIY+5ckfaCOVzFskAV2zJBSJFsJqFkHadvjmqiDNplFR/73RMGPrz19SGBL96A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
+  "projectFilePath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

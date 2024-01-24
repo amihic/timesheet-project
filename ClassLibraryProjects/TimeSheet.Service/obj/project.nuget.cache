@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1JUntOpwty3m1wYD8TBtMbWZxWUbtzMeykpRi4roK//wJFBK+/Dr7qCF+S4ZGWIx4NvJ5F/6aqLptzYc2FTxVw==",
+  "dgSpecHash": "goEcjpkj+Bm9yulCJhwKerXSmZA8ewzZfZ8cIbb2nsqivdAnunx8tcVhunkpkDSsnt/lMUEaZL8BWcvf8oRW1w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
+  "projectFilePath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\aleksa.mihic\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",

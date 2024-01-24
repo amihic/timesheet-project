@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj": {}
+    "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj": {
+    "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
+        "projectUniqueName": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
         "projectName": "TimeSheet.Domain",
-        "projectPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
+        "projectPath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
         "packagesPath": "C:\\Users\\aleksa.mihic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\obj\\",
+        "outputPath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

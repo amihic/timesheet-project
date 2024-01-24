@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/category")]
     public class CategoryController : ControllerBase
     {
@@ -53,9 +53,9 @@ namespace API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles="Worker")]
+        //[Authorize(Roles="Worker")]
         [HttpGet("/allCategories")]
-        [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
+        //[API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
             var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);

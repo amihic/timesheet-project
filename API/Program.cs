@@ -27,10 +27,10 @@ builder.Services.AddDbContext<TimeSheetDbContext>(options =>
 
 
 //kada necu autorizaciju, samo da zakomentarisem ovaj blok
-builder.Services.AddControllers(options =>
+/*builder.Services.AddControllers(options =>
 {
     options.Filters.Add(typeof(CustomAuthorizationFilter));
-});
+});*/
 
 // Add services to the container.
 

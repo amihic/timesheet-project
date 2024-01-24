@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj": {}
+    "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj": {}
   },
   "projects": {
     "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj": {
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj": {
+    "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
+        "projectUniqueName": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
         "projectName": "TimeSheet.Service",
-        "projectPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
+        "projectPath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
         "packagesPath": "C:\\Users\\aleksa.mihic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\obj\\",
+        "outputPath": "D:\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

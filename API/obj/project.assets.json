@@ -8868,18 +8868,18 @@
     },
     "TimeSheet.Data/1.0.0": {
       "type": "project",
-      "path": "../ClassLibraryProjects/TimeSheet.Data/TimeSheet.Data.csproj",
-      "msbuildProject": "../ClassLibraryProjects/TimeSheet.Data/TimeSheet.Data.csproj"
+      "path": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Data\\TimeSheet.Data.csproj",
+      "msbuildProject": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Data\\TimeSheet.Data.csproj"
     },
     "TimeSheet.Domain/1.0.0": {
       "type": "project",
-      "path": "../ClassLibraryProjects/TimeSheet.Domain/TimeSheet.Domain.csproj",
-      "msbuildProject": "../ClassLibraryProjects/TimeSheet.Domain/TimeSheet.Domain.csproj"
+      "path": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj",
+      "msbuildProject": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Domain\\TimeSheet.Domain.csproj"
     },
     "TimeSheet.Service/1.0.0": {
       "type": "project",
-      "path": "../ClassLibraryProjects/TimeSheet.Service/TimeSheet.Service.csproj",
-      "msbuildProject": "../ClassLibraryProjects/TimeSheet.Service/TimeSheet.Service.csproj"
+      "path": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj",
+      "msbuildProject": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\ClassLibraryProjects\\TimeSheet.Service\\TimeSheet.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8907,11 +8907,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\API\\API.csproj",
+      "projectUniqueName": "D:\\TimeSheet\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\API\\API.csproj",
+      "projectPath": "D:\\TimeSheet\\API\\API.csproj",
       "packagesPath": "C:\\Users\\aleksa.mihic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aleksa.mihic\\Desktop\\TimeSheet\\API\\obj\\",
+      "outputPath": "D:\\TimeSheet\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
