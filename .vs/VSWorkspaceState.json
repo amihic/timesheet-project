@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\API",
-    "\\API\\Controllers"
+    "\\ClassLibraryProjects",
+    "\\ClassLibraryProjects\\TimeSheet.Data",
+    "\\ClassLibraryProjects\\TimeSheet.Domain",
+    "\\ClassLibraryProjects\\TimeSheet.Service"
   ],
-  "SelectedNode": "\\TimeSheet.sln",
+  "SelectedNode": "\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
