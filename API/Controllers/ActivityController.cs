@@ -64,7 +64,7 @@ namespace API.Controllers
             return Ok(activitiesToReturn);
         }
 
-        [Authorize(Roles = "Worker")]
+        [Authorize(Roles = "Worker, Admin")]
         [HttpGet("/workingCalendar")]
         [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetWorkingCalendarAsync([FromQuery] SearchParamsForCalendarDTO searchParams)

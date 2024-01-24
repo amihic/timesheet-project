@@ -50,7 +50,6 @@ namespace TimeSheet.Service
             workingCalendar.WorkingDays = groupedActivitiesByDate;
             workingCalendar.TotalHours = activities.Sum(x => x.Time);
 
-
             return workingCalendar;
         }
 
@@ -61,25 +60,23 @@ namespace TimeSheet.Service
             workingDay.NumberOfHours = activities.Sum(x => x.Time);
             workingDay.Date = activities.FirstOrDefault().Date;
 
-            //var hpw = activities.Select(user => user.User.HoursPerWeek).FirstOrDefault();
+            var usersHoursPerWeek = activities.Select(activity => activity.User?.HoursPerWeek).FirstOrDefault();
 
-
-            SetWokringDayStatus(workingDay);
+            SetWokringDayStatus(workingDay, usersHoursPerWeek);
 
             return workingDay;
         }
 
-        private WorkingDay SetWokringDayStatus(WorkingDay workingDay)
+        private WorkingDay SetWokringDayStatus(WorkingDay workingDay, double? usersHoursPerWeek)
         {
-            /*var workingHoursPerDay = hpw / DaysPerWeek;
+            var workingHoursPerDay = usersHoursPerWeek / DaysPerWeek;
 
-            if (workingHoursPerDay == PartTime)
-                workingDay.WorkStatus = WorkStatus.PartTime;
-            else if (workingHoursPerDay == 0)
+            if (workingHoursPerDay == 0)
                 workingDay.WorkStatus = WorkStatus.Idle;
+            else if (workingHoursPerDay == PartTime)
+                workingDay.WorkStatus = WorkStatus.PartTime;
             else if (workingHoursPerDay >= FullTime)
-                workingDay.WorkStatus = WorkStatus.FullTime;*/
-            workingDay.WorkStatus = WorkStatus.FullTime;
+                workingDay.WorkStatus = WorkStatus.FullTime;
             return workingDay;
         }
 
