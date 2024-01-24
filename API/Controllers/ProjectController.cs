@@ -1,5 +1,6 @@
 ﻿using API.DTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Interfaces;
@@ -21,6 +22,7 @@ namespace API.Controllers
             _projectService = projectService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateProject([FromBody] CreateProjectDTO newProjectDto)
         {
@@ -30,6 +32,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public IActionResult UpdateProject([FromBody] ProjectDTO projectDto)
         {
@@ -39,6 +42,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteProject([FromRoute] int id)
         {

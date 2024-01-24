@@ -20,22 +20,13 @@ namespace API.Controllers
 
         private readonly IMapper _mapper;
 
-        [HttpGet]
-        public IActionResult GetUserData()
-        {
-            HttpContext.User.Claims.FirstOrDefault();
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userName = User.Identity.Name;
-
-            return Ok(new { UserId = userId, UserName = userName });
-        }
-
         public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
             _mapper = mapper;
             _categoryService = categoryService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CreateCategoryDTO newCategoryDto)
         {
@@ -67,10 +58,6 @@ namespace API.Controllers
         [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
-            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
-            
-            //Console.WriteLine(loggedInUser.Id);
-
             var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);
             
             var categories = await _categoryService.GetCategoriesAsync(parameters);

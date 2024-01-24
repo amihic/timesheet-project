@@ -17,8 +17,8 @@ using Microsoft.AspNet.Identity;
 
 namespace API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/user")]
-   //[TypeFilter(typeof(API.CustomAuthorizationFilter.CustomAuthorizationFilter))]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -36,19 +36,6 @@ namespace API.Controllers
             _jwtService = jwtService;
         }
 
-        /*private bool IsValidUser(string email, string password)
-        {
-            var user = _userService.GetUserByEmail(email);
-            Console.WriteLine(user.Id);
-            if (user == null)
-            {
-                Unauthorized();
-                return false;
-            }
-            
-            return true;
-        }*/
-
         [HttpPost("/login")]
         [AllowAnonymous]
         public IActionResult Login([FromBody] LoginDTO model)
@@ -60,7 +47,6 @@ namespace API.Controllers
             var token = GenerateJwtToken(userToLogIn);
             return Ok(new { token });
         }
-
 
         private string GenerateJwtToken(User user)
         {
@@ -85,8 +71,6 @@ namespace API.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        
-
         [HttpPost]
         public IActionResult CreateUser([FromBody] CreateUserDTO newUserDto)
         {
@@ -97,7 +81,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCategory([FromBody] UserDTO userDto)
+        public IActionResult UpdateUser([FromBody] UserDTO userDto)
         {
             var userToUpdate = _mapper.Map<UserDTO, User>(userDto);
             _userService.UpdateUser(userToUpdate);
@@ -106,7 +90,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory([FromRoute] int id)
+        public IActionResult DeleteUser([FromRoute] int id)
         {
             _userService.DeleteUser(id);
 

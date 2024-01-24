@@ -1,11 +1,11 @@
 ﻿using API.DTO;
+using API.PDF;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheet.Domain.Helpers;
 using TimeSheet.Domain.Interfaces;
 using TimeSheet.Domain.Model;
-using TimeSheet.Service;
 
 namespace API.Controllers
 {
@@ -22,7 +22,7 @@ namespace API.Controllers
             _activityService = activityService;
         }
 
-        [Authorize(Roles = "Worker")]
+        [Authorize(Roles = "Worker, Admin")]
         [HttpPost]
         [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public IActionResult CreateActivity([FromBody] CreateActivityDTO newActivityDto)
@@ -35,6 +35,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Worker, Admin")]
         [HttpPut]
         public IActionResult UpdateActivity([FromBody] ActivityDTO activityDto)
         {
@@ -44,6 +45,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteActivity([FromRoute] int id)
         {
@@ -52,12 +54,39 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Worker, Admin")]
         [HttpGet("/reports")]
-        public async Task<IActionResult> GetActivitiesAsync([FromQuery] SearchParamsForReportsDTO searchParams)
+        public async Task<IActionResult> GetReportsAsync([FromQuery] SearchParamsForReportsDTO searchParams)
         {
+            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
+
             var parameters = _mapper.Map<SearchParamsForReportsDTO, SearchParams>(searchParams);
 
+            parameters.UserId = loggedInUser.Id;
+
             var activities = await _activityService.GetActivitiesAsync(parameters);
+
+            var activitiesToReturn = _mapper.Map<IEnumerable<Activity>, IEnumerable<ActivityDTO>>(activities);
+
+            return Ok(activitiesToReturn);
+        }
+
+        [Authorize(Roles = "Worker, Admin")]
+        [HttpGet("/pdf")]
+        public async Task<IActionResult> GetPDFReportsAsync([FromQuery] SearchParamsForReportsDTO searchParams)
+        {
+            var loggedInUser = HttpContext.Items["UserId"] as LoggedInUser;
+
+            var parameters = _mapper.Map<SearchParamsForReportsDTO, SearchParams>(searchParams);
+
+            parameters.UserId = loggedInUser.Id;//ne mora da bude za ulogovanog
+
+            var activities = await _activityService.GetActivitiesAsync(parameters);
+
+            var outputPath = "D:/TimeSheetReportsPDF";
+
+            PdfGenerator pdfGenerator = new PdfGenerator();
+            pdfGenerator.GeneratePdf(activities, outputPath);
 
             var activitiesToReturn = _mapper.Map<IEnumerable<Activity>, IEnumerable<ActivityDTO>>(activities);
 
