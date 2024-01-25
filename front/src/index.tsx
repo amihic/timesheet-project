@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './scss/style.scss';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './components/App/App';
 import ClientsPage from './pages/ClientsPage/ClientsPage';
 import CategoriesPage from './pages/CategoriesPage/CategoriesPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
+import TeamMembersPage from './pages/TeamMembersPage/TeamMembersPage';
+import ReportsPage from './pages/ReportsPage/ReportsPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,12 +28,24 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <CategoriesPage/>,
+      },
+      {
+        path: "projects",
+        element: <ProjectsPage/>,
+      },
+      {
+        path: "teamMembers",
+        element: <TeamMembersPage/>,
+      },
+      {
+        path: "reports",
+        element: <ReportsPage/>,
       }
     ],
   },
   {
     path: "/login",
-    element: <div>Login</div>,
+    element: <LoginPage/>,
   },
 ]);
 

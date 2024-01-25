@@ -24,14 +24,14 @@
 .in-pass,
 .in-search {
 	width: 280px;
-	background-image: url('../img/icons/pass.png');
+	// background-image: url('../img/icons/pass.png');
 	background-repeat: no-repeat;
 	background-position: 7px 5px;
 	display: block;
 	padding-left: 30px;
 }
 .in-search {
-	background-image: url('../img/icons/search.png');
+	// background-image: url('../img/icons/search.png');
 	width: 250px;
 }
 select {
@@ -72,7 +72,7 @@ select {
 		width: 95%;
 		&.datepicker {
 			width: 86%;
-			background-image: url('../img/icons/date.png');
+			// background-image: url('../img/icons/date.png');
 			background-repeat: no-repeat;
 			background-position: 7px 5px;
 			display: block;
@@ -121,7 +121,7 @@ select {
 
 .centered-block {
 	input[type='text'] {
-		background-image: url('../img/icons/user.png');
+		// background-image: url('../img/icons/user.png');
 		background-repeat: no-repeat;
 		background-position: 7px 5px;
 		display: block;

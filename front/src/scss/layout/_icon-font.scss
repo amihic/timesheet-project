@@ -1,10 +1,10 @@
-@font-face {
-	font-family: "svgicons";
-	src: url('../fonts/svgicons.eot');
-	src: url('../fonts/svgicons.eot?#iefix') format('eot'),
-		url('../fonts/svgicons.woff') format('woff'),
-		url('../fonts/svgicons.ttf') format('truetype');
-}
+// @font-face {
+// 	font-family: "svgicons";
+// 	// src: url('../fonts/svgicons.eot');
+// 	// src: url('../fonts/svgicons.eot?#iefix') format('eot'),
+// 	// 	url('../fonts/svgicons.woff') format('woff'),
+// 	// 	url('../fonts/svgicons.ttf') format('truetype');
+// }
 
 @mixin font-styles {
 	font-family: "svgicons";
@@ -52,4 +52,4 @@
 .font-ico-heart {
 	@include font(ico-heart);
 }
-
+

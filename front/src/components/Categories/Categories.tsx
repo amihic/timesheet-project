@@ -7,11 +7,11 @@ function Categories({ categories }: CategoriesProps) {
     <div className="wrapper">
       <section className="content">
         <h2>
-          <i className="ico projects"></i>Projects
+          <i className="ico projects"></i>Categories
         </h2>
         <div className="grey-box-wrap reports">
           <a href="#new-member" className="link new-member-popup">
-            Create new project
+            Create new category
           </a>
           <div className="search-page">
             <input type="search" name="search-clients" className="in-search" />
@@ -49,7 +49,7 @@ function Categories({ categories }: CategoriesProps) {
             </ul>
             <div className="buttons">
               <div className="inner">
-                <a href="javascript:;" className="btn green">
+                <a>
                   Save
                 </a>
               </div>
@@ -59,93 +59,90 @@ function Categories({ categories }: CategoriesProps) {
         <div className="alpha">
           <ul>
             <li>
-              <a href="javascript:;">a</a>
+              <a>a</a>
             </li>
             <li>
-              <a href="javascript:;">b</a>
+              <a>b</a>
             </li>
             <li>
-              <a href="javascript:;">c</a>
+              <a>c</a>
             </li>
             <li>
-              <a href="javascript:;">d</a>
+              <a>d</a>
             </li>
             <li>
-              <a href="javascript:;">e</a>
+              <a>e</a>
             </li>
             <li className="active">
-              <a href="javascript:;">f</a>
+              <a>f</a>
             </li>
             <li>
-              <a href="javascript:;">g</a>
+              <a>g</a>
             </li>
             <li>
-              <a href="javascript:;">h</a>
+              <a>h</a>
             </li>
             <li>
-              <a href="javascript:;">i</a>
+              <a>i</a>
             </li>
             <li>
-              <a href="javascript:;">j</a>
+              <a>j</a>
             </li>
             <li>
-              <a href="javascript:;">k</a>
+              <a>k</a>
             </li>
             <li>
-              <a href="javascript:;">l</a>
+              <a>l</a>
             </li>
             <li className="disabled">
-              <a href="javascript:;">m</a>
+              <a>m</a>
             </li>
             <li>
-              <a href="javascript:;">n</a>
+              <a>n</a>
             </li>
             <li>
-              <a href="javascript:;">o</a>
+              <a>o</a>
             </li>
             <li>
-              <a href="javascript:;">p</a>
+              <a>p</a>
             </li>
             <li>
-              <a href="javascript:;">q</a>
+              <a>q</a>
             </li>
             <li>
-              <a href="javascript:;">r</a>
+              <a>r</a>
             </li>
             <li>
-              <a href="javascript:;">s</a>
+              <a>s</a>
             </li>
             <li>
-              <a href="javascript:;">t</a>
+              <a>t</a>
             </li>
             <li>
-              <a href="javascript:;">u</a>
+              <a>u</a>
             </li>
             <li>
-              <a href="javascript:;">v</a>
+              <a>v</a>
             </li>
             <li>
-              <a href="javascript:;">w</a>
+              <a>w</a>
             </li>
             <li>
-              <a href="javascript:;">x</a>
+              <a>x</a>
             </li>
             <li>
-              <a href="javascript:;">y</a>
+              <a>y</a>
             </li>
             <li className="last">
-              <a href="javascript:;">z</a>
+              <a>z</a>
             </li>
           </ul>
         </div>
-        <div className="accordion-wrap projects">
-          {categories.map((category) => (
-            <div className="item">
+        <div className="accordion-wrap projects" >
+          {categories && categories.length && categories.map((category) => (
+            <div className="item" key={category.id}>
               <div className="heading">
-                <span>{category.name}</span>{" "}
-                <span>
-                  <em>{category.id}</em>
-                </span>
+                <span>{category.name}</span>
                 <i>+</i>
               </div>
               <div className="details">
@@ -202,10 +199,10 @@ function Categories({ categories }: CategoriesProps) {
                 </ul>
                 <div className="buttons">
                   <div className="inner">
-                    <a href="javascript:;" className="btn green">
+                    <a>
                       Save
                     </a>
-                    <a href="javascript:;" className="btn red">
+                    <a >
                       Delete
                     </a>
                   </div>
@@ -217,16 +214,16 @@ function Categories({ categories }: CategoriesProps) {
         <div className="pagination">
           <ul>
             <li>
-              <a href="javascript:;">1</a>
+              <a>1</a>
             </li>
             <li>
-              <a href="javascript:;">2</a>
+              <a>2</a>
             </li>
             <li>
-              <a href="javascript:;">3</a>
+              <a>3</a>
             </li>
             <li className="last">
-              <a href="javascript:;">Next</a>
+              <a>Next</a>
             </li>
           </ul>
         </div>
