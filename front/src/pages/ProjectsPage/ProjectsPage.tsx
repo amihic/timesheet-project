@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react"
+import Projects from "../../components/Projects/Projects"
+import ProjectService from "../../services/ProjectService"
+
 function ProjectsPage()
 {
-    return <div>Projects page</div>
+    const [projects, setProjects] = useState<Category[]>([])
+
+    useEffect(()=>{
+        ProjectService.getProjects().then(res=>setProjects(res))
+    },[])
+    
+    return <Projects projects={projects}/>
 
 }
 
