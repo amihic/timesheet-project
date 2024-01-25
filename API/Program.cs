@@ -27,10 +27,10 @@ builder.Services.AddDbContext<TimeSheetDbContext>(options =>
 
 
 //kada necu autorizaciju, samo da zakomentarisem ovaj blok
-/*builder.Services.AddControllers(options =>
+builder.Services.AddControllers(options =>
 {
     options.Filters.Add(typeof(CustomAuthorizationFilter));
-});*/
+});
 
 // Add services to the container.
 
@@ -130,7 +130,7 @@ builder.Services.AddSwaggerGen(c => //swagger sa authorize
 
 var app = builder.Build();
 
-//app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

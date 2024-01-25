@@ -53,7 +53,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        //[Authorize(Roles="Worker")]
+        [Authorize(Roles="Worker")]
         [HttpGet("/allCategories")]
         //[API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
