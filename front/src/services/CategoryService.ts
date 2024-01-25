@@ -1,17 +1,25 @@
-import axios from "axios"
+import axios from "axios";
+import AuthService from "./AuthService";
 
-const url = "https://localhost:7161/allCategories"
+const url = "https://localhost:7161/allCategories";
 
-async function getCategories() : Promise<Category[]>{
-    const res = await axios.get(url)
+async function getCategories(): Promise<Category[]> {
 
-    console.log(res.data)
-    return res.data
+ var cfg = {
+    headers: {
+       Authorization: "Bearer " + AuthService.getAuthToken()
+    }
+ }
+
+const res = await axios.get(url, cfg);
+
+
+  console.log(res.data);
+  return res.data;
 }
 
 const CategoryService = {
-    getCategories,
+  getCategories,
+};
 
-}
-
-export default CategoryService
+export default CategoryService;
