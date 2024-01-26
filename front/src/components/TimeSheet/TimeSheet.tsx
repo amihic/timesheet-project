@@ -45,9 +45,9 @@ const Calendar = () => {
           </div>
           <div className="hours">
             {dayData ? (
-              <a href="days.html">Hours: <span>{dayData.numberOfHours}</span></a>
+              <a href="days">Hours: <span>{dayData.numberOfHours}</span></a>
             ) : (
-              <a href="days.html">No data</a>
+              <a href="days">No data</a>
             )}
           </div>
         </>
@@ -120,7 +120,7 @@ const Calendar = () => {
           </div>
         </div>
         <div className="total">
-          <span>Total hours: <em>90</em></span>
+          <span>Total hours: <em>{dataFromDatabase.totalHours}</em></span>
         </div>
       </section>
     </div>

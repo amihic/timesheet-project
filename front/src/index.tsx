@@ -12,6 +12,7 @@ import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import TeamMembersPage from './pages/TeamMembersPage/TeamMembersPage';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
 import TimeSheet from './components/TimeSheet/TimeSheet';
+import Days from './components/Days/Days';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "reports",
         element: <ReportsPage/>,
+      },
+      {
+        path: "days",
+        element: <Days/>,
       }
     ],
   },
