@@ -1,16 +1,13 @@
 import axios from "axios";
 
-const apiUrl = 'https://localhost:7161';
+const apiUrl = "https://localhost:7161";
 
 async function login(email: string, password: string): Promise<void> {
   try {
-    const response = await axios.post(
-      `${apiUrl}/login`,
-      {
-        email: email,
-        password: password,
-      }
-    );
+    const response = await axios.post(`${apiUrl}/login`, {
+      email: email,
+      password: password,
+    });
 
     const token = response.data;
 
@@ -22,22 +19,18 @@ async function login(email: string, password: string): Promise<void> {
   }
 }
 
-function getAuthToken(): Promise<string | null> {
-    return new Promise((resolve) => {
-        const tokenString = localStorage.getItem("token");
-        resolve(tokenString ? JSON.parse(tokenString) : null);
-      });
+function getAuthToken(): string | null {
+  const tokenString = localStorage.getItem("token");
+  return tokenString ? JSON.parse(tokenString).token : null;
 }
 
 axios.interceptors.request.use((config) => {
-
-  const token = getAuthToken();
+  const token = AuthService.getAuthToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
-
 
 const AuthService = {
   login,

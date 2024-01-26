@@ -1,5 +1,7 @@
+
+
 type ReportsProps = {
-    reports: Report[];
+    reports: ReportUser[];
   };
   
   function Reports({ reports }: ReportsProps) {
@@ -52,55 +54,53 @@ type ReportsProps = {
 						</li>
 					</ul>
 				</div>
-				<table className="default-table">
-					<tbody><tr>
-						<th>
-							Date
-						</th>
-						<th>
-							Team member
-						</th>
-						<th>
-							Projects
-						</th>
-						<th>Categories</th>
-						<th>Description</th>
-						<th className="small">Time</th>
-					</tr>
+				
+				<table>
+				<thead>
 					<tr>
-						<td>
-							2013-02-13
-						</td>
-						<td>
-							Slađana Miljanovic
-						</td>
-						<td>
-							Seachange - Nitro
-						</td>
-						<td>
-							Front-End Development
-						</td>
-						<td>
-							Lorem ipsum dolor sit amet
-						</td>
-						<td className="small">
-							7.5
-						</td>
+					<th>Date</th>
+					<th>User</th>
+					<th>Client</th>
+					<th>Project</th>
+					<th>Category</th>
+					<th>Description</th>
+					<th>Time</th>
+					{/* <th>Project</th>
+					<th>Role</th>
+					<th>Description</th>
+					<th className="small">Hours</th> */}
 					</tr>
-					
-				</tbody></table>
+				</thead>
+				<tbody>
+					{reports.map((item, index) => (
+					<tr key={index}>
+						<td>{item.date}</td>
+						<td>{item.userId}</td>
+						<td>{item.client.name}</td>
+						<td>{item.project.name}</td>
+						<td>{item.category.name}</td>
+						<td>{item.description}</td>
+						<td>{item.time}</td>
+						{/* <td>{item.project}</td>
+						<td>{item.role}</td>
+						<td>{item.description}</td>
+						<td className="small">{item.hours}</td> */}
+					</tr>
+					))}
+				</tbody>
+				</table>
 				<div className="total">
 					<span>Report total: <em>7.5</em></span>
 				</div>
 				<div className="grey-box-wrap reports">
 					<div className="btns-inner">
-						<a href="javascript:;" className="btn white">
+						<a className="btn white">
 							<span>Print report</span>
 						</a>
-						<a href="javascript:;" className="btn white">
+						<a className="btn white">
 							<span>Create PDF</span>
 						</a>
-						<a href="javascript:;" className="btn white">
+						<a className="btn white">
 							<span>Export to excel</span>
 						</a>
 					</div>

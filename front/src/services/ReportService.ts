@@ -1,17 +1,25 @@
-import axios from "axios"
+import axios from "axios";
+import AuthService from "./AuthService";
 
-const url = "https://localhost:7161/allCategories"
+const url = "https://localhost:7161/reports";
 
-async function getReports() : Promise<Report[]>{
-    const res = await axios.get(url)
+async function getReports(): Promise<ReportUser[]> {
+  const authToken = AuthService.getAuthToken();
 
-    console.log(res.data)
-    return res.data
+  var cfg = {
+    headers: {
+      Authorization: "Bearer " + authToken,
+    },
+  };
+
+  const res = await axios.get(url, cfg);
+
+  console.log(res.data);
+  return res.data;
 }
 
 const ReportService = {
-    getReports,
-    
-}
+  getReports,
+};
 
-export default ReportService
+export default ReportService;

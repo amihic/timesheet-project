@@ -9,7 +9,7 @@ function CategoriesPage()
     useEffect(()=>{
         CategoryService.getCategories().then(res=>setCategories(res))
     },[])
-    
+
     return <Categories categories={categories}/>
 
 }

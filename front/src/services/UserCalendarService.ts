@@ -1,9 +1,9 @@
 import axios from "axios";
 import AuthService from "./AuthService";
 
-const url = "https://localhost:7161/allCategories";
+const url = "https://localhost:7161/workingCalendar";
 
-async function getCategories(): Promise<Category[]> {
+async function getUserCalendar(): Promise<UserCalendar> {
 
 const authToken = AuthService.getAuthToken();
 
@@ -21,7 +21,7 @@ const res = await axios.get(url, cfg);
 
 
 const CategoryService = {
-  getCategories,
+    getUserCalendar,
 };
 
 export default CategoryService;

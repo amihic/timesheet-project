@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react"
+import ReportService from "../../services/ReportService"
+import Reports from "../../components/Reports/Reports"
+
 function ReportsPage()
 {
-    return <div>Reports page</div>
+    const [reports, setReports] = useState<ReportUser[]>([])
+
+    useEffect(()=>{
+        ReportService.getReports().then(res=>setReports(res))
+    },[])
+
+    return <Reports reports={reports}/>
 
 }
 

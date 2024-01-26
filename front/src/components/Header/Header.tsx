@@ -33,7 +33,7 @@ function Header() {
           <nav>
             <ul className="menu">
               <li>
-                <a href="/app" className="btn nav active">
+                <a href="/app/timeSheet" className="btn nav active">
                   TimeSheet
                 </a>
               </li>

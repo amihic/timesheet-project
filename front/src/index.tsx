@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import TeamMembersPage from './pages/TeamMembersPage/TeamMembersPage';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
+import TimeSheet from './components/TimeSheet/TimeSheet';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/app",
     element: <App />,
     children: [
+      {
+        path: "timeSheet",
+        element: <TimeSheet/>,
+      },
       {
         path: "clients",
         element: <ClientsPage/>,
