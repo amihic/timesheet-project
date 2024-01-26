@@ -55,7 +55,7 @@ namespace API.Controllers
 
         [Authorize(Roles="Worker")]
         [HttpGet("/allCategories")]
-        //[API.CustomAuthorizationFilter.CustomAuthorizationFilter]
+        [API.CustomAuthorizationFilter.CustomAuthorizationFilter]
         public async Task<IActionResult> GetCategoriesAsync([FromQuery] SearchParamsForCliCatProUseDTO searchParams)
         {
             var parameters = _mapper.Map<SearchParamsForCliCatProUseDTO, SearchParams>(searchParams);

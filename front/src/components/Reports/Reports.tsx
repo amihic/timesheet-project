@@ -59,7 +59,6 @@ type ReportsProps = {
 				<thead>
 					<tr>
 					<th>Date</th>
-					<th>User</th>
 					<th>Client</th>
 					<th>Project</th>
 					<th>Category</th>
@@ -75,7 +74,6 @@ type ReportsProps = {
 					{reports.map((item, index) => (
 					<tr key={index}>
 						<td>{item.date}</td>
-						<td>{item.userId}</td>
 						<td>{item.client.name}</td>
 						<td>{item.project.name}</td>
 						<td>{item.category.name}</td>

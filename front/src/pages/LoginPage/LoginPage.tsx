@@ -1,15 +1,17 @@
 import { useState } from "react"
 import AuthService from "../../services/AuthService";
+import { useNavigate } from "react-router";
 
 function LoginPage()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
         await AuthService.login(email, password);
-        // baci na neku stranicu
+        navigate('/app');
         } catch (error) {
         console.error("Login error:", error);
         }
@@ -50,7 +52,7 @@ function LoginPage()
                     Remember me
                   </label>
                   <span className="right">
-                    <a>
+                    <a href="#">
                       Forgot password?
                     </a>
                     <button onClick={handleLogin} className="btn orange">

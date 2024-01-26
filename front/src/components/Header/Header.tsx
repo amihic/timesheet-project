@@ -1,9 +1,34 @@
+import {jwtDecode} from 'jwt-decode';
+import { useEffect, useState } from 'react';
 
 function Header() {
+
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function getEmailFromToken() {
+      const tokenString = localStorage.getItem('token');
+
+      if (tokenString !== null) {
+        try {
+          const decodedToken: { sub?: string } = jwtDecode(tokenString);
+          const userEmail = decodedToken?.sub || null;
+          setUserEmail(userEmail);
+          console.log('User email:', userEmail);
+        } catch (error) {
+          console.error('Error decoding token:', error);
+        }
+      }
+    }
+
+    getEmailFromToken();
+  }, []);
+
   return (
     <div >
       <header className="header">
 			<div className="top-bar"></div>
+      <div style={{ marginLeft: '50px', color: '#ed6732' }}>{userEmail !== null ? userEmail : 'Loading...'}</div>
 			<div className="wrapper">
           <a href="app" className="logo">
             <img src="src\assets\img\logo.png" alt="VegaITSourcing Timesheet" />

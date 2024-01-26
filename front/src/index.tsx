@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         element: <ReportsPage/>,
       },
       {
-        path: "days",
+        path: "app/days",
         element: <Days/>,
       }
     ],
